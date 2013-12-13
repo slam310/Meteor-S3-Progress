@@ -1,6 +1,8 @@
 # Amazon S3 Uploader
 S3 provides a simple way of uploading files to the Amazon S3 service. This is useful for uploading images and files that you want accesible to the public. S3 is built on [Knox](https://github.com/LearnBoost/knox), a module that becomes available server-side after installing this package.
 
+#### This is a fork of the original work from @Lepozepo I only update this for my personal necesities.
+
 ## Installation
 
 ``` sh
