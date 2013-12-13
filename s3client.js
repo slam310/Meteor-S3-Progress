@@ -21,10 +21,13 @@ Handlebars.registerHelper('S3', function (options) {
 					size:file.size,
 					type:file.type
 				};
-
+				Session.set('uploading', true);
 				reader.onload = function () {
 					fileData.data = new Uint8Array(reader.result);
-					Meteor.call("S3upload",fileData,context,callback);
+					Meteor.call("S3upload",fileData,context,callback, function(err, url){
+						Session.set('S3url', url);
+						Session.set('uploading', false);
+					});
 				};
 
 				reader.readAsArrayBuffer(file);
