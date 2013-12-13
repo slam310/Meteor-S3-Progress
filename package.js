@@ -1,5 +1,5 @@
 Package.describe({
-	summary: "Upload files to S3. Allows use of Knox Server-Side."
+	summary: "Upload files to S3. Allows use of Knox Server-Side and get files urls on client-side."
 });
 
 Npm.depends({
