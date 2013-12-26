@@ -3,6 +3,11 @@ S3 provides a simple way of uploading files to the Amazon S3 service. This is us
 
 #### This is a fork of the original work from @Lepozepo I only update this for my personal necesities.
 
+##Improvements
+*Specific support for images.
+*Now you can add a max width and height for resize de image before send to S3.
+*You have two session variables for get the upload state and the url in the client side easily.
+
 ## Installation
 
 ``` sh
@@ -26,8 +31,12 @@ Meteor.call("S3config",{
 ### Step 2
 Create an S3 input with a callback. CLIENT SIDE.
 
+**New** for resize an image add max width an max height.
+
+All in px.
+
 ``` handlebars
-{{#S3 callback="callbackFunction"}}
+{{#S3 callback="callbackFunction" height=900 width=700}}
 	<input type="file">
 {{/S3}}
 ```
