@@ -4,9 +4,10 @@ S3 provides a simple way of uploading files to the Amazon S3 service. This is us
 #### This is a fork of the original work from @Lepozepo I only update this for my personal necesities.
 
 ##Improvements
-*Specific support for images.
-*Now you can add a max width and height for resize de image before send to S3.
-*You have two session variables for get the upload state and the url in the client side easily.
+
+* Specific support for images.
+* Now you can add a max width and height for resize de image before send to S3.
+* You have two session variables for get the upload state and the url in the client side easily.
 
 ## Installation
 
