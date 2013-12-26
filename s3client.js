@@ -24,7 +24,7 @@ Handlebars.registerHelper('S3', function (options) {
 					type:file.type
 				};
 				Session.set('uploading', true);
-				if (!file.type.match(/image.*/)) {
+				if (!file.type.match(/image.*/)&&!uploadOptions.width) {
 					console.log('This file is not an image');
 
 					reader.onload = function () {
@@ -38,7 +38,6 @@ Handlebars.registerHelper('S3', function (options) {
 	  			reader.readAsArrayBuffer(file);
 				}
 				else{
-
 					//IMAGE CANVAS
 
 					var img = document.createElement("img");
