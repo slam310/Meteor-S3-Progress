@@ -25,6 +25,9 @@ Handlebars.registerHelper('S3', function (options) {
 
         reader.onload = function () {
           fileData.data = new Uint8Array(reader.result);
+          fileData.originalName = fileData.name;
+          var extension = (fileData.name).match(/\.[0-9a-z]{1,5}$/i);
+          fileData.name = Meteor.uuid()+extension;
           options = {};
           options.file = fileData;
           options.context = context;
@@ -32,6 +35,7 @@ Handlebars.registerHelper('S3', function (options) {
           if(path != null){
             options.path = path;
           }
+          Session.set('s3-file-name', fileData.name)
           Meteor.call("S3upload", options)
 
         };
@@ -43,4 +47,21 @@ Handlebars.registerHelper('S3', function (options) {
   },html);
 
   return html;
+});
+
+Meteor.subscribe('s3files');
+
+Template.s3progress.helpers({
+  progress: function () {
+    var file_name = Session.get('s3-file-name')
+    if(file_name != null){
+      var file = S3files.findOne({file_name: file_name});
+      if(file){
+        var percent = file.percent_uploaded
+        if(percent)
+          return percent
+      }
+    }
+    return 0;
+  }
 });
