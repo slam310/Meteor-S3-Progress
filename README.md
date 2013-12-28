@@ -1,8 +1,6 @@
 # Amazon S3 Uploader
 S3 provides a simple way of uploading files to the Amazon S3 service. This is useful for uploading images and files that you want accesible to the public. S3 is built on [Knox](https://github.com/LearnBoost/knox), a module that becomes available server-side after installing this package.
 
-#### This is a fork of the original work from @Lepozepo I only update this for my personal necesities.
-
 ##Improvements
 
 * Specific support for images.
@@ -42,6 +40,11 @@ All in px.
 {{/S3}}
 ```
 
+If you wish to have a progress bar for the uploaded file add:
+```
+{{> s3progress}}
+```
+
 ### Step 3
 Create a callback function that will handle what to do with the generated URL. SERVER SIDE.
 
@@ -52,13 +55,6 @@ Meteor.methods({
 	}
 });
 ```
-
-### Other options
-
-Two session variables.
-
-1. ```Session.get('uploading');``` that return true if are uploading or false if not.
-2. ```Session.get('S3url');``` that return the url of the file when it's in S3 server.
 
 ## Create your Amazon S3
 For all of this to work you need to create an aws account. On their website create navigate to S3 and create a bucket. Navigate to your bucket and on the top right side you'll see your account name. Click it and go to Security Credentials. Once you're in Security Credentials create a new access key under the Access Keys (Access Key ID and Secret Access Key) tab. This is the info you will use for the first step of this plug. Go back to your bucket and select the properties OF THE BUCKET, not a file. Under Static Website Hosting you can Enable website hosting, to do that first upload a blank index.html file and then enable it. YOU'RE NOT DONE.
