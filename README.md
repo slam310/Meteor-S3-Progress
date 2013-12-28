@@ -9,8 +9,8 @@ S3 provides a simple way of uploading files to the Amazon S3 service. This is us
 
 ## Installation
 
-``` sh
-$ mrt add s3-Images
+```
+mrt add s3-Images
 ```
 
 ## How to use
@@ -18,7 +18,7 @@ $ mrt add s3-Images
 ### Step 1
 Define your Amazon S3 credentials. SERVER SIDE.
 
-``` javascript
+```
 Meteor.call("S3config",{
 	key: 'amazonKey',
 	secret: 'amazonSecret',
@@ -34,13 +34,14 @@ Create an S3 input with a callback. CLIENT SIDE.
 
 All in px.
 
-``` handlebars
+```
 {{#S3 callback="callbackFunction" height=900 width=700}}
 	<input type="file">
 {{/S3}}
 ```
 
 If you wish to have a progress bar for the uploaded file add:
+
 ```
 {{> s3progress}}
 ```
@@ -48,7 +49,7 @@ If you wish to have a progress bar for the uploaded file add:
 ### Step 3
 Create a callback function that will handle what to do with the generated URL. SERVER SIDE.
 
-``` javascript
+```
 Meteor.methods({
 	callbackFunction:function(url,context){
 		console.log('Add '+url+' to the id of '+context);
@@ -61,7 +62,7 @@ For all of this to work you need to create an aws account. On their website crea
 
 You need to set permissions so that everyone can see what's in there. Under the Permissions tab click Edit CORS Configuration and paste this:
 
-``` xml
+```
 <?xml version="1.0" encoding="UTF-8"?>
 <CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
     <CORSRule>
@@ -73,7 +74,7 @@ You need to set permissions so that everyone can see what's in there. Under the 
 
 Save it. Now click Edit bucket policy and paste this, REPLACE THE BUCKET NAME WITH YOUR OWN:
 
-``` javascript
+```
 {
 	"Version": "2008-10-17",
 	"Statement": [
@@ -92,6 +93,5 @@ Save it. Now click Edit bucket policy and paste this, REPLACE THE BUCKET NAME WI
 
 Enjoy, this took me a long time to figure out and I'm sharing it so that nobody has to go through all that.
 
-## Notes
-
-I have no clue how to make a progress bar but it'll happen someday. I was able to make that work by modifying [meteor-file](https://github.com/EventedMind/meteor-file) BUT I wasn't able to use it in [Modulus](https://modulus.io/) because their cloud storage service isn't public (so I ended up having to read the file as a base64 image which sucked for performance).
+## Credits
+Forked from original work done by Lepozepo/S3
