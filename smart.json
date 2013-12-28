@@ -1,9 +1,9 @@
 {
-  "name": "s3-Images",
-  "description": "A simple helper for easily uploading files and resized images to Amazon S3 from Meteor. This package will also make Knox available server-side.",
-  "homepage": "https://github.com/donflopez/Meteor-S3-Images",
-  "author": "Donflopez <donflopez@gmail.com>",
-  "version": "1.3.0",
-  "git": "https://github.com/donflopez/Meteor-S3-Images.git",
+  "name": "S3-Progress",
+  "description": "A simple helper for easily uploading files with a progress bar to Amazon S3 from Meteor. This package will also make Knox available server-side.",
+  "homepage": "https://github.com/digilord/Meteor-S3-Progress",
+  "author": "Digilord <digilord@me.com>",
+  "version": "1.4.0",
+  "git": "https://github.com/digilord/Meteor-S3-Progress.git",
   "packages": {}
 }
