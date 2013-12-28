@@ -3,20 +3,20 @@ S3 provides a simple way of uploading files to the Amazon S3 service. This is us
 
 ##Improvements
 
-* Specific support for images.
-* Now you can add a max width and height for resize an image before send to S3.
-* You have two session variables for get the upload state and the url in the client side easily.
+* Added a progress bar as a template.
+* Added a collection to track the uploaded files with username and original file name.
+* Added the option to have a path for the `{{#S3}}..{{/S3}}` block helper. 
 
 ## Installation
 
 ```
-mrt add s3-Images
+mrt add s3-progress
 ```
 
 ## How to use
 
-### Step 1
-Define your Amazon S3 credentials. SERVER SIDE.
+### Step 1 - SERVER SIDE
+Define your Amazon S3 credentials.
 
 ```
 Meteor.call("S3config",{
@@ -27,27 +27,27 @@ Meteor.call("S3config",{
 });
 ```
 
-### Step 2
-Create an S3 input with a callback. CLIENT SIDE.
+### Step 2 - CLIENT SIDE
+Create an S3 input with an optional callback and optional path.
 
-**New** for resize an image add max width and max height.
+The path can be anything meaningful to you:
 
-All in px.
+ - an application identifier
+ - user ID
+ - group ID
+ - etc.
 
 ```
-{{#S3 callback="callbackFunction" height=900 width=700}}
+{{#S3 callback="callbackFunction" path="unique_path_for_this_project"}}
 	<input type="file">
 {{/S3}}
 ```
 
-If you wish to have a progress bar for the uploaded file add:
+If you wish to have a progress bar for the uploaded file add `{{> s3progress}}` to the template where you have the `{{#S3}}..{{/S3}}` block helper.
 
-```
-{{> s3progress}}
-```
 
-### Step 3
-Create a callback function that will handle what to do with the generated URL. SERVER SIDE.
+### Step 3 - SERVER SIDE
+Create a callback function that will handle what to do with the generated URL. .
 
 ```
 Meteor.methods({
