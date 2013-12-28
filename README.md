@@ -95,3 +95,11 @@ Enjoy, this took me a long time to figure out and I'm sharing it so that nobody 
 
 ## Credits
 Forked from original work done by Lepozepo/S3
+
+## Donating
+By donating you are supporting this package and its developer so that he may continue to bring you updates to this and other software he maintains.
+
+[![Support us via Gittip][gittip-badge]][digilord]
+
+[gittip-badge]: https://rawgithub.com/digilord/gittip-badge/master/dist/gittip.png
+[digilord]: https://www.gittip.com/digilord/
