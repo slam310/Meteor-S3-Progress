@@ -1,0 +1,15 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "s3-Images": {
+        "path": "."
+      }
+    },
+    "packages": {
+      "s3-Images": {
+        "path": "."
+      }
+    }
+  }
+}

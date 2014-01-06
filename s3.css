@@ -1,0 +1,14 @@
+.s3-upload-progressing {
+  background-color: #dff0d8;
+}
+
+.s3-file-name {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 150px;
+}
+
+.uploaded-time-ago {
+  cursor: pointer;
+}

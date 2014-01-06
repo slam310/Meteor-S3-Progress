@@ -1,9 +1,58 @@
 <template name='s3progress'>
   {{#isolate}}
-  <div class="progress progress-striped active">
-    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%">
-      <span class="sr-only">{{progress}}% Complete (success)</span>
+  {{#if show_progress}}
+  {{#if complete}}
+  <div class='btn btn-block btn-success'>Upload Complete</div>
+  {{else}}
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%">
+      <span class="sr-only">{{progress}}% Complete</span>
     </div>
   </div>
+  {{/if}}
+  {{/if}}
   {{/isolate}}
+</template>
+
+<template name='s3list_all'>
+  {{#isolate}}
+  <button class='btn btn-xs btn-default s3-delete-selected-files'>Delete Selected</button>
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th><input type='checkbox' class='s3-check-all-files'></th>
+        <th>File Name</th>
+        <th class='text-right'>Uploaded</th>
+      </tr>
+    </thead>
+    <tbody>
+    {{#each all_files}}
+      {{> s3_file_row}}
+    {{/each}}
+    </tbody>
+  </table>
+  {{/isolate}}
+</template>
+
+<template name='s3_file_row'>
+  {{#isolate}}
+  <tr class='{{processing}}'>
+    <td class='{{processing}} col-md-1'>
+      {{#if complete}}
+      <input id='{{_id}}' type='checkbox' class='selected-file' value='{{_id}}'>
+      {{/if}}
+    </td>
+    <td class='{{processing}} s3-file-name col-md-6'>
+      {{#if url}}
+      <a target='_blank' href='{{url}}'><span class='glyphicon glyphicon-cloud-download'></span></a>
+      {{/if}}
+      {{name}}
+    </td>
+    <td class='text-right {{processing}} col-md-3 uploaded-time-ago ago'><small>{{uploaded_ago}}</small></td>
+  </tr>
+  {{/isolate}}
+</template>
+
+<template name='s3list_of_user'>
+  {{> s3list_all}}
 </template>

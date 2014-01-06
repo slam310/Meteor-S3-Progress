@@ -4,13 +4,13 @@ S3 provides a simple way of uploading files to the Amazon S3 service. This is us
 ##Improvements
 
 * Added a progress bar as a template.
-* Added a collection to track the uploaded files with username and original file name.
-* Added the option to have a path for the `{{#S3}}..{{/S3}}` block helper. 
+* Added a collection to track the uploaded files with user ID and original file name.
+* Added the option to have a path for the `{{#S3}}..{{/S3}}` block helper.
 
 ## Installation
 
 ```
-mrt add s3-progress
+mrt add S3-Progress
 ```
 
 ## How to use

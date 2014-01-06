@@ -31,6 +31,8 @@ Meteor.methods({
     S3files.upsert({file_name: file.name},{
       user: Meteor.userId(),
       file_name: file.name,
+      size: file.size,
+      mime_type: file.type,
       original_name: file.originalName
     })
     if(path != null) {
@@ -62,12 +64,17 @@ Meteor.methods({
     );
 
     var url = knox.http(future.wait());
-    if(url != null && typeof callback == 'string'){
-      console.log("URL: ", url);
-      Meteor.call(callback,url,context);
+    if(url != null){
+      S3files.update({file_name: file.name}, {$set: {url: url}});
+      if(typeof callback == 'string'){
+        Meteor.call(callback,url,context);
+      }
     }
   },
-  S3delete:function(path, callback){
+  S3delete:function(file_id, callback){
+    var file = S3files.findOne({_id: file_id});
+    var path = file.user + "/" + file.file_name;
+    S3files.remove({_id: file_id});
     knox.deleteFile(path, function(e,r) {
       if(e){
         console.log(e);
@@ -86,7 +93,7 @@ Meteor.methods({
     });
 
     var files = future.wait();
-    console.log(files);
+    return files;
   }
 
 });
