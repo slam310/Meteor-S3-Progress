@@ -3,7 +3,7 @@
   "description": "A simple helper for easily uploading files with a progress bar to Amazon S3 from Meteor. This package will also make Knox available server-side.",
   "homepage": "https://github.com/digilord/Meteor-S3-Progress",
   "author": "Digilord <digilord@me.com>",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "git": "https://github.com/digilord/Meteor-S3-Progress.git",
   "packages": {}
 }
