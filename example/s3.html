@@ -1,0 +1,37 @@
+<template name='s3'>
+  <div class="grid-box col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div class='inner-border'>
+      <h3 class='grid-box-header'>All S3 Files</h3>
+      <p>
+        The block below was generated with:
+      </p>
+      <pre>&#123;&#123;> s3list_all}}</pre>
+      {{> s3list_all}}
+    </div>
+  </div>
+  <div class="grid-box col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div class='inner-border'>
+      <h3 class='grid-box-header'>{{currentUser.profile.name}} Private S3 Files </h3>
+      <p>
+        The block below was generated with:
+      </p>
+      <pre>&#123;&#123;> s3upload}}</pre>
+      {{> s3upload}}
+      <hr>
+      <p>
+        The block below was generated with:
+      </p>
+      <pre>&#123;&#123;> s3list_of_user}}</pre>
+      {{> s3list_of_user}}
+    </div>
+  </div>
+  <div class="grid-box col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div class='inner-border'>
+      <p>
+        The blocks below were generated with:
+      </p>
+      <pre>&#123;&#123;> s3config}}</pre>
+      {{> s3config}}
+    </div>
+  </div>
+</template>

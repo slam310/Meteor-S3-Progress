@@ -1,11 +1,13 @@
 # Amazon S3 Uploader
 S3 provides a simple way of uploading files to the Amazon S3 service. This is useful for uploading images and files that you want accesible to the public. S3 is built on [Knox](https://github.com/LearnBoost/knox), a module that becomes available server-side after installing this package.
 
-##Improvements
+##Features
 
-* Added a progress bar as a template.
-* Added a collection to track the uploaded files with user ID and original file name.
-* Added the option to have a path for the `{{#S3}}..{{/S3}}` block helper.
+* Progress bar
+* Per user S3 configuration.
+* Application wide S3 configuration.
+* Configure via code or configuration view.
+* Roles for `s3_admin` and `s3_user` are provided via the Roles package.
 
 ## Installation
 
@@ -14,8 +16,15 @@ mrt add S3-Progress
 ```
 
 ## How to use
+This package makes use of the Roles package
 
-### Step 1 - SERVER SIDE
+### Server Setup
+In order to use the S3 service you need to provide some information.  This information is stored in a collection on your server.  Defining it in a file on the server side of your application simply inserts the needed data into the collection that is used to store the credentials for the users and the overall configuration for the application.
+
+As an `s3_admin` you will be allowed to change these settings via a view on the client side of things.  I recommend that you protect this view so that general users cannot see it.
+
+
+
 Define your Amazon S3 credentials.
 
 ```
@@ -26,36 +35,16 @@ Meteor.call("S3config",{
 	directory: '/subfolder/' //This is optional, defaults to root
 });
 ```
+Optionally you may skip this step.  If you do the package will prompt you for the configuration.
 
 ### Step 2 - CLIENT SIDE
-Create an S3 input with an optional callback and optional path.
+ * Add `{{> s3upload}}` to the template where you would like the upload HTML to reside.
+ * Add `{{> s3list_all}}` for a listing off all the files in S3 for this application.
+ * Add `{{> s3list_of_user}}` for a listing of the logged in users files in S3.
+ * Add `{{> s3config}}` to access the configuration options for the package.
+ * Add `{{> s3config_user}}` to your user profile edit view to allow users to add in
+ their own S3 configuration.
 
-The path can be anything meaningful to you:
-
- - an application identifier
- - user ID
- - group ID
- - etc.
-
-```
-{{#S3 callback="callbackFunction" path="unique_path_for_this_project"}}
-	<input type="file">
-{{/S3}}
-```
-
-If you wish to have a progress bar for the uploaded file add `{{> s3progress}}` to the template where you have the `{{#S3}}..{{/S3}}` block helper.
-
-
-### Step 3 - SERVER SIDE
-Create a callback function that will handle what to do with the generated URL. .
-
-```
-Meteor.methods({
-	callbackFunction:function(url,context){
-		console.log('Add '+url+' to the id of '+context);
-	}
-});
-```
 
 ## Create your Amazon S3
 For all of this to work you need to create an aws account. On their website create navigate to S3 and create a bucket. Navigate to your bucket and on the top right side you'll see your account name. Click it and go to Security Credentials. Once you're in Security Credentials create a new access key under the Access Keys (Access Key ID and Secret Access Key) tab. This is the info you will use for the first step of this plug. Go back to your bucket and select the properties OF THE BUCKET, not a file. Under Static Website Hosting you can Enable website hosting, to do that first upload a blank index.html file and then enable it. YOU'RE NOT DONE.
@@ -94,7 +83,7 @@ Save it. Now click Edit bucket policy and paste this, REPLACE THE BUCKET NAME WI
 Enjoy, this took me a long time to figure out and I'm sharing it so that nobody has to go through all that.
 
 ## Credits
-Forked from original work done by Lepozepo/S3
+Forked from original work done by Lepozepo/S3.
 
 ## Donating
 By donating you are supporting this package and its developer so that he may continue to bring you updates to this and other software he maintains.

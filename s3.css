@@ -12,3 +12,21 @@
 .uploaded-time-ago {
   cursor: pointer;
 }
+
+.s3alert h3:first-of-type {
+  margin-top: -5px;
+}
+
+.s3alert h3 {
+  border-bottom: 1px solid;
+}
+
+.ok-user, .no-user {
+  position: absolute !important;
+  right: 20px;
+  top: 9px !important;
+}
+
+.ok-user {
+  color: green;
+}
