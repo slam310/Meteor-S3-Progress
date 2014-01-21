@@ -313,6 +313,11 @@ Template.s3config.helpers({
   }
 });
 
+Template.s3config_form.rendered = function () {
+  $('#S3AllowUserConfig').bootstrapSwitch();
+};
+
+
 Template.s3config.events({
   'click #S3ConfigSaveButton': function (event, template) {
     event.preventDefault();
