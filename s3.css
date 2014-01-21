@@ -2,6 +2,10 @@
   background-color: #dff0d8;
 }
 
+.s3-upload-error {
+  background-color: #f2dede;
+}
+
 .s3-file-name {
   text-overflow: ellipsis;
   white-space: nowrap;

@@ -23,6 +23,14 @@ Template.s3upload.helpers({
       return false;
     }
   },
+  s3private: function(){
+    var s3config_user = S3config.findOne({user_id: Meteor.userId()});
+    if(typeof s3config_user == 'object'){
+      return true;
+    } else {
+      return false;
+    }
+  },
   noConfig: noConfig
 });
 
@@ -60,6 +68,39 @@ Template.s3upload.events({
 });
 
 Template.s3progress.helpers({
+  has_errors: function(){
+    var file_name = Session.get('s3-file-name')
+    if(file_name != null){
+      var file = S3files.findOne({file_name: file_name});
+      if(file){
+        var error = file.error
+        if(error){
+          Meteor.setTimeout(function(){
+            Session.set('s3-file-name', null);
+          },5000);
+          $('.s3-file-upload').val(null);
+          return true
+        } else {
+          return false
+        }
+      }
+    } else {
+      return false;
+    }
+  },
+  error_class: function(){
+    var file_name = Session.get('s3-file-name')
+    if(file_name != null){
+      var file = S3files.findOne({file_name: file_name});
+      if(file){
+        var error = file.error
+        if(error)
+          return 'progress-bar-danger'
+      }
+    } else {
+      return '';
+    }
+  },
   show_progress: function(){
     var file_name = Session.get('s3-file-name')
     if(file_name != null){
@@ -137,8 +178,10 @@ Template.s3_file_row.helpers({
     }
   },
   processing: function(){
-    if(this.percent_uploaded != 100) {
+    if(this.percent_uploaded != 100 && this.error != true) {
       return 's3-upload-progressing';
+    } else if(this.error){
+      return 's3-upload-error';
     } else {
       return '';
     }
@@ -200,7 +243,7 @@ Template.s3list_all.events({
           _.each(checked_files, function(file){
             Meteor.call('S3delete', file)
           })
-
+          Session.set('s3-file-name', null)
           // Do something
         }
       });
@@ -264,6 +307,9 @@ Template.s3config.helpers({
   config: function(){
     var existing_global_config = S3config.findOne({type: 'global'});
     return existing_global_config;
+  },
+  type: function(){
+    return global;
   }
 });
 

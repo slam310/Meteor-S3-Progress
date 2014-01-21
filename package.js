@@ -9,7 +9,21 @@ Npm.depends({
 
 Package.on_use(function (api) {
   //Need service-configuration to use Meteor.method
-  api.use(["underscore", "ejson","service-configuration",'templating','collection-hooks','momentjs',"accounts-base", "accounts-password", "accounts-ui", "coffeescript", "roles"], ["client", "server"]);
+  api.use([
+    "underscore",
+    "ejson",
+    "service-configuration",
+    'templating',
+    'collection-hooks',
+    'momentjs',
+    "accounts-base",
+    "accounts-password",
+    "accounts-ui",
+    "coffeescript",
+    "roles",
+    "bootstrap-3",
+    "bootstrap-3-switch"
+    ], ["client", "server"]);
   api.use(["handlebars", "spark", "bootboxjs"], "client");
   api.add_files(["s3templates.html", "s3client.js","s3.css"], "client");
   api.add_files(["s3server.js"], "server");

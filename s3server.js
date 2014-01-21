@@ -71,29 +71,32 @@ Meteor.methods({
     var global = S3config.findOne({type: 'global'})
     if(global){
       obj.type = 'global';
-      S3config.update({type: 'global'}, obj)
+      S3config.update({type: 'global'}, {$set: obj})
     } else {
       S3config.insert(obj)
     }
   },
   S3upload:function(options){
-    var s3config = S3config.findOne({type: 'global'});
+    var user_id = Meteor.userId();
+    var user = Meteor.users.findOne({_id: user_id});
+    var s3config;
+    var s3config_user = S3config.findOne({user_id: user_id});
+    if(typeof s3config_user == 'object'){
+      s3config = s3config_user
+    } else {
+      s3config = S3config.findOne({type: 'global'});
+    }
+
     var knox = Knox.createClient(s3config);
     var file = options.file;
     var context = options.context;
     var callback = options.callback;
     var path;
-    var user_id;
+
     var file_stream_buffer = new streamBuffers.ReadableStreamBuffer({
       frequency: 10,       // in milliseconds.
       chunkSize: 2048     // in bytes.
     });
-
-    if(Meteor.userId()){
-      user_id = Meteor.userId();
-    } else {
-      user_id = 'unassigned'
-    }
 
     var future = new Future();
 
@@ -105,7 +108,8 @@ Meteor.methods({
       size: file.size,
       mime_type: file.type,
       original_name: file.originalName,
-      path: path
+      path: path,
+      s3_config_id: s3config._id
     });
 
     var buffer = new Buffer(file.data);
@@ -118,15 +122,20 @@ Meteor.methods({
     var put = knox.putStream(file_stream_buffer,path,headers,function(e,r){
       if(r){
         future.return(path);
-      } else {
-        console.log('There was an error...');
+      }
+      if(e) {
+        console.log('There was an error...', e);
       }
     });
 
     put.on('progress', Meteor.bindEnvironment(function(progress){
         S3files.update({file_name: file.name}, {$set: {percent_uploaded: progress.percent}});
-      },function(err){
-        console.log(err);
+      })
+    );
+
+    put.on('error', Meteor.bindEnvironment(function(error){
+        console.log("Error Call: ", error)
+        S3files.update({file_name: file.name}, {$set: {error: true}});
       })
     );
 
@@ -139,9 +148,9 @@ Meteor.methods({
     }
   },
   S3delete:function(file_id, callback){
-    var s3config = S3config.findOne({type: 'global'});
-    var knox = Knox.createClient(s3config);
     var file = S3files.findOne({_id: file_id});
+    var s3config = S3config.findOne({_id: file.s3_config_id});
+    var knox = Knox.createClient(s3config);
     var path = file.user + "/" + file.file_name;
     S3files.remove({_id: file_id});
     knox.deleteFile(path, function(e,r) {
