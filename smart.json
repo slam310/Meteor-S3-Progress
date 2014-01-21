@@ -6,6 +6,6 @@
   "version": "1.4.1",
   "git": "https://github.com/digilord/Meteor-S3-Progress.git",
   "packages": {
-    "bootstrap-3-switch": {}
+    "bootstrap-switch": {}
   }
 }

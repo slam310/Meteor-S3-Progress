@@ -314,7 +314,7 @@ Template.s3config.helpers({
 });
 
 Template.s3config_form.rendered = function () {
-  $('#S3AllowUserConfig').bootstrapSwitch();
+  $('#S3AllowUserConfig')['switch']();
 };
 
 
