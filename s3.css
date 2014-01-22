@@ -34,3 +34,8 @@
 .ok-user {
   color: green;
 }
+
+.s3-upload-controls.row {
+  margin-left: 0px;
+  margin-right: 0px;
+}

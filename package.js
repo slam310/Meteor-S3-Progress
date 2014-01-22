@@ -2,6 +2,8 @@ Package.describe({
   summary: "Upload files to S3. Allows use of Knox Server-Side and get files urls on client-side."
 });
 
+var both = ["client", "server"];
+
 Npm.depends({
   knox: "0.8.5",
   "stream-buffers": "0.2.5"
@@ -17,17 +19,29 @@ Package.on_use(function (api) {
     'collection-hooks',
     'momentjs',
     "accounts-base",
-    "accounts-password",
-    "accounts-ui",
     "coffeescript",
     "roles",
-    "bootstrap-3",
-    "bootstrap-3-switch"
+    "bootstrap-3"
     ], ["client", "server"]);
   api.use(["handlebars", "spark", "bootboxjs"], "client");
-  api.add_files(["s3templates.html", "s3client.js","s3.css"], "client");
-  api.add_files(["s3server.js"], "server");
-  api.add_files("s3collection.js",["client", "server"]);
+  api.add_files([
+    'client/common/common.html',
+    'client/common/common.js',
+    'client/views/s3admin/admin.html',
+    'client/views/s3admin/admin.js',
+    'client/views/s3upload/upload.html',
+    'client/views/s3upload/upload.js',
+    'client/views/s3user/user.html',
+    'client/views/s3user/user.js',
+    "s3.css"
+    ], "client");
+  api.add_files(["server/s3server.js"], "server");
+
+  // Collections shared by both client and server.
+  api.add_files([
+    'collection/s3config.js',
+    'collection/s3files.js'
+    ],both);
 
   //Allows user access to Knox
   api.export && api.export("Knox","server");

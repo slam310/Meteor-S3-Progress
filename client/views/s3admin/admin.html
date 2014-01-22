@@ -1,0 +1,164 @@
+<template name='s3list_all'>
+  {{#if noConfig}}
+  {{> noConfigWarning}}
+  {{else}}
+  {{#if isInRole 's3_admin'}}
+  <button class='btn btn-xs btn-default s3-delete-selected-files'>Delete Selected</button>
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th><input type='checkbox' class='s3-check-all-files'></th>
+        <th>Path</th>
+        <th class='text-right'>Uploaded</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each users}}
+      <tr class='active'><td colspan=3 class='text-left'><strong>{{username}}</strong></td></tr>
+      {{#if all_files}}
+      {{#each all_files}}
+        {{> s3_file_row}}
+      {{/each}}
+      {{else}}
+      <tr class='active'><td colspan=3 class='text-center'>No Files</td></tr>
+      {{/if}}
+      {{/each}}
+      {{#if unassigned_files}}
+      <tr class='active'><td colspan=3 class='text-left'><strong>No User Assigned</strong></td></tr>
+      {{/if}}
+      {{#if orphaned_files}}
+      <tr class='active'><td colspan=3 class='text-left'><strong>Orphaned Files</strong></td></tr>
+      {{#each orphaned_files}}
+        {{> s3_file_row}}
+      {{/each}}
+      {{/if}}
+    </tbody>
+  </table>
+  {{/if}}
+  {{/if}}
+</template>
+
+<template name='s3config'>
+  {{#if isInRole 's3_admin'}}
+  {{#if noConfig}}
+  <div class='s3alert alert alert-danger'>
+    <h3>S3 Global Configuration</h3>
+    <p>
+      No configuration exists for the S3 service in this application.
+      In order to display an upload view you must have at a minimum a global configuration for S3.
+    </p>
+    <p>
+      Please fill in the form below.
+    </p>
+    <form class='form-horizontal' role="form">
+      {{> s3config_form}}
+      <button id='S3ConfigSaveButton' type="submit" class="btn btn-default btn-block">Save</button>
+    </form>
+  </div>
+  {{else}}
+  <div class='s3alert alert alert-success'>
+    <h3>S3 Global Configuration</h3>
+    <p>
+      The following S3 configuration is active for this applicaion.
+    </p>
+    {{#with config}}
+    <form class='form-horizontal' role="form">
+      {{> s3config_form}}
+      <button id='S3ConfigSaveButton' type="submit" class="btn btn-default btn-block">Update</button>
+    </form>
+    {{/with}}
+  </div>
+  {{/if}}
+  {{/if}}
+
+  {{#if noAdminUsers}}
+  {{> s3config_no_users}}
+  {{else}}
+  {{#if isInRole 's3_admin'}}
+  {{> s3config_users}}
+  {{else}}
+  <button class='btn btn-default btn-block disabled'>The S3 application level service is configured.</button>
+  {{/if}}
+  {{/if}}
+</template>
+
+<template name='s3config_no_users'>
+  <div class='s3alert alert alert-danger'>
+    <h3>S3 Users Configuration</h3>
+    <p>
+      No users have the s3_admin role.  Without a user with the s3_admin role you cannot
+      administer the S3 service and see all the S3 files that have been uploaded to the applications S3 bucket.
+    </p>
+    <p>
+      <strong>
+      You will need to add at least one user to the s3_admin role in order to continue.
+      </strong>
+    </p>
+    <p>
+      Enter the name of the user you wish to have the s3_admin role in the box below. This package will check to see if the user exists.  If the user does not exist you will be prompted to create a user.
+    </p>
+    <br/>
+    <div class='well'>
+    <form class='form-horizontal' role="form">
+      <div class="form-group">
+        <label for="username" class="col-sm-3 control-label">Username</label>
+        <div class='col-sm-9'>
+          <input type="text" class="form-control" name='username' id="Username" placeholder="user@example.com">
+          {{#if user_exists}}
+          <span class='glyphicon glyphicon-ok ok-user '></span>
+          {{else}}
+          <span class='glyphicon glyphicon-remove no-user'></span>
+          {{/if}}
+        </div>
+      </div>
+      {{#if user_exists}}
+      <!-- User exists -->
+      {{else}}
+      <div class="form-group">
+        <label for="password" class="col-sm-3 control-label">Password</label>
+        <div class='col-sm-9'>
+          <input type="password" class="form-control" name='password' id="Password">
+        </div>
+      </div>
+      {{/if}}
+      {{#if user_exists}}
+      <button class='btn btn-default btn-block' id='AddS3AdminRole'>Add Role</button>
+      {{else}}
+      <button class='btn btn-default btn-block' id='CreateS3AdminUser'>Create User</button>
+      {{/if}}
+    </form>
+  </div>
+  </div>
+</template>
+
+<template name='s3config_users'>
+  <div class='s3alert alert alert-success'>
+    <h3>S3 Admin Users</h3>
+    <p>
+      The following users have been assigned the s3_admin role.
+      These users have full control over the S3 bucket files and
+      the global S3 configuration for this application.
+    </p>
+    <ul>
+      {{#each admin_users}}
+      <li>{{username}}</li>
+      {{/each}}
+    </ul>
+    <h3>S3 Users</h3>
+    <p>
+      The following users have been assigned the s3_user role.  This
+      role allows the user to have a private S3 configuration.
+    </p>
+    {{#if users}}
+    <ul>
+      {{#each users}}
+      <li>{{username}}</li>
+      {{/each}}
+    </ul>
+    {{else}}
+    <p class='text-center'>
+      <strong>No private S3 users.</strong>
+    </p>
+    {{/if}}
+  </div>
+</template>

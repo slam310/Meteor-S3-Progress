@@ -1,0 +1,49 @@
+<template name='s3upload'>
+  <div class='s3-upload-controls row'>
+  {{#if noConfig}}
+    {{> noConfigWarning}}
+  {{else}}
+    {{#if noUploads}}
+      <input type="file" class='hidden s3-file-upload no-select'>
+      {{#if allow_user_config}}
+      <div class="btn-group col-md-12">
+      {{/if}}
+      <button class='btn btn-default {{button_size_css}} s3-file-upload-button'>
+        {{#if s3private}}
+        <span class='glyphicon glyphicon-cloud-upload'></span> Private Upload
+        {{else}}
+        <span class='glyphicon glyphicon-cloud-upload'></span> Upload
+        {{/if}}
+      </button>
+      {{#if allow_user_config}}
+        <button class='btn btn-default col-md-1 s3-user-config-button'>
+          <span class='glyphicon glyphicon-cog'></span>
+        </button>
+      </div>
+      {{/if}}
+    {{else}}
+    {{> s3progress}}
+    {{/if}}
+  {{/if}}
+  </div>
+</template>
+
+<template name='s3progress'>
+  {{#isolate}}
+  {{#if show_progress}}
+  {{#if has_errors}}
+  <div class='btn btn-block btn-danger'>Upload Aborted</div>
+  {{else}}
+  {{#if complete}}
+  <div class='btn btn-block btn-success'>Upload Complete</div>
+  {{else}}
+  <div class="progress">
+    <div class="progress-bar {{error_class}}" role="progressbar" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%">
+      <span class="sr-only">{{progress}}% Complete</span>
+    </div>
+  </div>
+  {{/if}}
+  {{/if}}
+  {{/if}}
+  {{/isolate}}
+</template>

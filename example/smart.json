@@ -1,16 +1,9 @@
 {
   "meteor": {},
   "packages": {
-    "roles": {},
-    "user-status": {},
-    "bootboxjs": {
-      "git": "https://github.com/digilord/meteor-bootboxjs.git"
-    },
     "S3-Progress": {
       "path": "../../Meteor-S3-Progress"
     },
-    "collection-hooks": {},
-    "momentjs": {},
-    "bootstrap-3": {},
+    "accounts-ui-bootstrap-3": {}
   }
 }

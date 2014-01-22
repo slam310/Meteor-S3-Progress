@@ -37,7 +37,7 @@ Meteor.publish('s3_global_config', function(){
   if(Roles.userIsInRole(this.userId, ['s3_admin'])) {
     return S3config.find({});
   } else {
-    return S3config.find({},{fields: {type: 1}});
+    return S3config.find({},{fields: {type: 1, allow_user_config: 1}});
   }
 });
 
@@ -65,7 +65,13 @@ Meteor.methods({
     }
   },
   S3ConfigSave: function(obj) {
-    S3config.insert(obj)
+    if(obj._id){
+      var _id = obj._id;
+      delete obj._id;
+      S3config.update({_id: _id},{$set: obj});
+    } else {
+      S3config.insert(obj);
+    }
   },
   S3config:function(obj){
     var global = S3config.findOne({type: 'global'})
