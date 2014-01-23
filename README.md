@@ -96,8 +96,8 @@ Enjoy, this took me a long time to figure out and I'm sharing it so that nobody 
 Forked from original work done by Lepozepo/S3.
 
 ## To Do
- - [ ] Complete ability to have folders
- - [ ] Allow end users to set a session variable to nest items within a bucket.
+- [ ] Complete ability to have folders
+- [ ] Allow end users to set a session variable to nest items within a bucket.
 
 ## License
 The MIT License (MIT)
