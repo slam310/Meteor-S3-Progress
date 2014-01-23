@@ -33,26 +33,41 @@ Template.s3_file_row.helpers({
 
 Template.s3_file_row.events({
   'click .uploaded-time-ago': function (event, template) {
-    var button = $(template.find('.uploaded-time-ago'));
-    if(this.percent_uploaded == 100) {
-      if(button.hasClass('ago')){
-        button.removeClass('ago');
-        var html = [];
-        html.push('<small>');
-        html.push(moment(template.data.modifiedAt).calendar());
-        html.push('</small>');
-        button.html(html.join(""));
-      } else {
-        button.addClass('ago');
-        var html = [];
-        html.push('<small>');
-        html.push(moment(template.data.modifiedAt).fromNow());
-        html.push('</small>');
-        button.html(html.join(""));
-      }
-    } else {
+    if(template.data.percent_uploaded != 100)
       return '';
+
+    var button = $(template.find('.uploaded-time-ago'));
+
+    if(button.hasClass('ago')){
+      button.removeClass('ago');
+      var html = [];
+      html.push('<small>');
+      html.push(moment(template.data.modifiedAt).calendar());
+      html.push('</small>');
+      button.html(html.join(""));
+    } else {
+      button.addClass('ago');
+      var html = [];
+      html.push('<small>');
+      html.push(moment(template.data.modifiedAt).fromNow());
+      html.push('</small>');
+      button.html(html.join(""));
     }
+
+  },
+  'click .path-popover': function(event, template){
+    if(template.data.percent_uploaded != 100)
+      return '';
+
+    var button = $(template.find('.path-popover'));
+
+    var options = {
+      container: 'body',
+      content: "Path: " + template.data.path,
+      placement: 'bottom',
+      html: true
+    }
+    button.popover(options)
   }
 });
 

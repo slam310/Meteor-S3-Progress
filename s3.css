@@ -6,7 +6,7 @@
   background-color: #f2dede;
 }
 
-.s3-file-name {
+.xs3-file-name {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -38,4 +38,13 @@
 .s3-upload-controls.row {
   margin-left: 0px;
   margin-right: 0px;
+}
+
+.path-popover {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.popover {
+  max-width: 600px !important;
 }

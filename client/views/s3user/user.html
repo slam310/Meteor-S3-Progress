@@ -14,7 +14,7 @@
       <a target='_blank' href='{{url}}'><span class='glyphicon glyphicon-cloud-download'></span></a>
       {{/if}}
       {{/if}}
-      {{name}}
+      <div class='path-popover'><small>{{name}}</small></div>
     </td>
     <td class='text-right {{processing}} col-md-3 uploaded-time-ago ago'><small>{{uploaded_ago}}</small></td>
   </tr>
@@ -42,7 +42,7 @@
     <thead>
       <tr>
         <th><input type='checkbox' class='s3-check-all-files'></th>
-        <th>Path</th>
+        <th>Name</th>
         <th class='text-right'>Uploaded</th>
       </tr>
     </thead>
