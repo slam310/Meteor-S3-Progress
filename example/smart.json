@@ -4,6 +4,7 @@
     "S3-Progress": {
       "path": "../../Meteor-S3-Progress"
     },
-    "accounts-ui-bootstrap-3": {}
+    "accounts-ui-bootstrap-3": {},
+    "bootstrap-3": {}
   }
 }

@@ -7,6 +7,14 @@ Template.s3list_all.helpers({
   all_files: function(){
     return S3files.find({user: this._id}).fetch();
   },
+  has_files: function(){
+    var file_count = S3files.find({user: this._id}).count();
+    if(file_count > 0){
+      return true;
+    } else {
+      return false;
+    }
+  },
   unassigned_files: function(){
     return S3files.find({user: {$exists: false}}).fetch();
   },

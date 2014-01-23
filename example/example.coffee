@@ -17,3 +17,9 @@
 #     // code to run on server at startup
 #   });
 # }
+
+Meteor.startup () ->
+  if Meteor.isClient
+    Accounts.ui.config({
+      passwordSignupFields: 'USERNAME_AND_EMAIL'
+    })

@@ -15,8 +15,17 @@ S3 provides a simple way of uploading files to the Amazon S3 service. This is us
 mrt add S3-Progress
 ```
 
-## How to use
-This package makes use of the Roles package
+## Requirements
+This package makes use of the following packages:
+
+ - roles
+ - accounts-base
+ - accounts-password
+ - momentjs
+ - bootboxjs
+ - collection-hooks
+ 
+ All the styling is done via [Bootstrap](http://getbootstrap.com/), but I didn't make the bootstrap package a dependency.  That way you, the pacakge user, can style it as you see fit.
 
 ### Server Setup
 In order to use the S3 service you need to provide some information.  This information is stored in a collection on your server.  Defining it in a file on the server side of your application simply inserts the needed data into the collection that is used to store the credentials for the users and the overall configuration for the application.
@@ -84,6 +93,28 @@ Enjoy, this took me a long time to figure out and I'm sharing it so that nobody 
 
 ## Credits
 Forked from original work done by Lepozepo/S3.
+
+## License
+The MIT License (MIT)
+
+Copyright (c) 2013 D. Allen Morrigan
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## Donating
 By donating you are supporting this package and its developer so that he may continue to bring you updates to this and other software he maintains.

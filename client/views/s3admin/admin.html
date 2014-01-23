@@ -14,13 +14,15 @@
     </thead>
     <tbody>
       {{#each users}}
+      {{#if has_files}}
       <tr class='active'><td colspan=3 class='text-left'><strong>{{username}}</strong></td></tr>
       {{#if all_files}}
       {{#each all_files}}
         {{> s3_file_row}}
       {{/each}}
       {{else}}
-      <tr class='active'><td colspan=3 class='text-center'>No Files</td></tr>
+      <tr><td colspan=3 class='text-center'>No Files</td></tr>
+      {{/if}}
       {{/if}}
       {{/each}}
       {{#if unassigned_files}}

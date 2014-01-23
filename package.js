@@ -20,7 +20,8 @@ Package.on_use(function (api) {
     'momentjs',
     "accounts-base",
     "coffeescript",
-    "roles"
+    "roles",
+    "bootboxjs"
     ], ["client", "server"]);
   // api.use(["handlebars", "spark", "bootboxjs"], "client");
   api.add_files([

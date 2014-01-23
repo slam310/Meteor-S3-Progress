@@ -2,7 +2,7 @@ Template.s3upload.helpers({
   button_size_css: function(){
     var s3config = S3config.findOne({type: 'global'});
     if(s3config.allow_user_config == 'on'){
-      return 'col-md-11'
+      return 'col-md-11 col-sm-10 col-xs-10 col-lg-11'
     } else {
       return 'btn-block'
     }

@@ -41,6 +41,12 @@ Meteor.publish('s3_global_config', function(){
   }
 });
 
+Meteor.publish('s3_all_users', function(){
+  if(Roles.userIsInRole(this.userId, ['s3_admin'])) {
+    return Meteor.users.find({});
+  }
+});
+
 Meteor.publish('s3config', function(){
   return S3config.find({user: this.userId, type: {$ne: 'global'}})
 });
@@ -156,6 +162,9 @@ Meteor.methods({
   S3delete:function(file_id, callback){
     var file = S3files.findOne({_id: file_id});
     var s3config = S3config.findOne({_id: file.s3_config_id});
+    if(typeof s3config == 'undefined'){
+      s3config = S3config.findOne({type: 'global'});
+    }
     var knox = Knox.createClient(s3config);
     var path = file.user + "/" + file.file_name;
     S3files.remove({_id: file_id});
