@@ -46,7 +46,7 @@ Meteor.call("S3config",{
 ```
 Optionally you may skip this step.  If you do the package will prompt you for the configuration.
 
-### Step 2 - CLIENT SIDE
+### Templates
  * Add `{{> s3upload}}` to the template where you would like the upload HTML to reside.
  * Add `{{> s3list_all}}` for a listing off all the files in S3 for this application.
  * Add `{{> s3list_of_user}}` for a listing of the logged in users files in S3.
@@ -55,9 +55,11 @@ Optionally you may skip this step.  If you do the package will prompt you for th
  their own S3 configuration.
 
 
-## Create your Amazon S3
+## Amazon S3 Setup
+---
 For all of this to work you need to create an aws account. On their website create navigate to S3 and create a bucket. Navigate to your bucket and on the top right side you'll see your account name. Click it and go to Security Credentials. Once you're in Security Credentials create a new access key under the Access Keys (Access Key ID and Secret Access Key) tab. This is the info you will use for the first step of this plug. Go back to your bucket and select the properties OF THE BUCKET, not a file. Under Static Website Hosting you can Enable website hosting, to do that first upload a blank index.html file and then enable it. YOU'RE NOT DONE.
 
+### CORS Setup
 You need to set permissions so that everyone can see what's in there. Under the Permissions tab click Edit CORS Configuration and paste this:
 
 ```
@@ -70,6 +72,7 @@ You need to set permissions so that everyone can see what's in there. Under the 
 </CORSConfiguration>
 ```
 
+### Bucket Policy
 Save it. Now click Edit bucket policy and paste this, REPLACE THE BUCKET NAME WITH YOUR OWN:
 
 ```
@@ -89,8 +92,10 @@ Save it. Now click Edit bucket policy and paste this, REPLACE THE BUCKET NAME WI
 }
 ```
 
-Enjoy, this took me a long time to figure out and I'm sharing it so that nobody has to go through all that.
+### Users
+I recommend setting up an AWS Identity and Access Management (IAM) user per application.  Please refer to the AWS documentation on how to add a user.
 
+---
 ## Credits
 Forked from original work done by Lepozepo/S3.
 
