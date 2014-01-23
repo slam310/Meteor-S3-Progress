@@ -61,6 +61,20 @@ Template.s3config_form.helpers({
     } else {
       return 'btn-default'
     }
+  },
+  use_user_role_on_active: function(){
+    if(this.use_user_role == 'on'){
+      return 'btn-default active'
+    } else {
+      return 'btn-default'
+    }
+  },
+  use_user_role_off_active: function(){
+    if(this.use_user_role == 'off'){
+      return 'btn-default active'
+    } else {
+      return 'btn-default'
+    }
   }
 });
 

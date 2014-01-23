@@ -51,8 +51,27 @@
       </div>
       <br><br>
       <div class='alert alert-info'>
-        Per User S3 is a configuration option that allows each user to enter credentials for S3 so that they can use their own bucket
-        for this application.
+        Per User S3 is a configuration option that allows each user to enter credentials for S3 so that they can
+        use their own bucket for this application.
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="S3UseUserRole" class="col-sm-3 control-label">Use User Role</label>
+    <div class='col-sm-9'>
+      <div class="btn-group" data-toggle="buttons">
+        <label class="btn {{use_user_role_on_active}}">
+          <input type="radio" name="use_user_role" class='s3-use-user-role-radio' id="S3UseUserRoleOn" value='on'> Yes
+        </label>
+        <label class="btn {{use_user_role_off_active}}">
+          <input type="radio" name="use_user_role" class='s3-use-user-role-radio' id="S3UseUserRoleOff" value='off'> No
+        </label>
+      </div>
+      <br><br>
+      <div class='alert alert-info'>
+        Use User Role allows for the application to be setup so that certain users have access
+        to the Per User S3 functionality.  If this is set to No and Per User S3 is set to Yes
+        ALL users will have the ability to have a personal S3 configuration.
       </div>
     </div>
   </div>
