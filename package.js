@@ -22,7 +22,7 @@ Package.on_use(function (api) {
     "coffeescript",
     "roles"
     ], ["client", "server"]);
-  api.use(["handlebars", "spark", "bootboxjs"], "client");
+  // api.use(["handlebars", "spark", "bootboxjs"], "client");
   api.add_files([
     'client/common/common.html',
     'client/common/common.js',
