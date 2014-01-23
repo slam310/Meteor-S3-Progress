@@ -94,9 +94,8 @@ Save it. Now click Edit bucket policy and paste this, REPLACE THE BUCKET NAME WI
 ### Users
 I recommend setting up an AWS Identity and Access Management (IAM) user per application.  Please refer to the AWS documentation on how to add a user.
 
----
 ## Credits
-Forked from original work done by @Lepozepo/S3.
+Forked from original work done by [Lepozepo/S3](https://github.com/Lepozepo/S3).
 
 ## To Do
 - Complete ability to have folders
