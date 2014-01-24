@@ -41,7 +41,9 @@ Meteor.call("S3config",{
 	key: 'amazonKey',
 	secret: 'amazonSecret',
 	bucket: 'bucketName',
-	directory: '/subfolder/' //This is optional, defaults to root
+	directory: '/',				// Set this to a directory in this bucket.
+	allow_user_config: 'on', 	// Valid values 'on' and 'off'
+	use_user_role: 'off'		// Valid values 'on' and 'off'
 });
 ```
 Optionally you may skip this step.  If you do the package will prompt you for the configuration.
@@ -51,6 +53,7 @@ Optionally you may skip this step.  If you do the package will prompt you for th
  * Add `{{> s3list_all}}` for a listing off all the files in S3 for this application.
  * Add `{{> s3list_of_user}}` for a listing of the logged in users files in S3.
  * Add `{{> s3config}}` to access the configuration options for the package.
+ * Add `{{> s3config_admin_users}}` to administer the users for the package.
  * Add `{{> s3config_user}}` to your user profile edit view to allow users to add in
  their own S3 configuration.
 

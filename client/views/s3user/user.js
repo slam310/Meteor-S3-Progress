@@ -53,7 +53,6 @@ Template.s3_file_row.events({
       html.push('</small>');
       button.html(html.join(""));
     }
-
   },
   'click .path-popover': function(event, template){
     if(template.data.percent_uploaded != 100)
@@ -116,7 +115,8 @@ Template.s3list_of_user.helpers({
     } else {
       return false;
     }
-  }
+  },
+  useUserRole: useUserRole
 });
 
 Template.s3list_of_user.events({

@@ -167,11 +167,59 @@ Template.s3config_no_users.events({
   }
 });
 
-Template.s3config_users.helpers({
-  admin_users: function () {
-    return Roles.getUsersInRole(['s3_admin']).fetch();
+Template.s3config_admin_users.helpers({
+  users: function (){
+    return Meteor.users.find({}).fetch();
   },
-  users: function () {
-    return Roles.getUsersInRole(['s3_user']).fetch();
+  isS3Admin: function(){
+    if(Roles.userIsInRole(this._id,['s3_admin'])){
+      return true;
+    } else {
+      return false;
+    }
+  },
+  isS3User: function(){
+    if(Roles.userIsInRole(this._id,['s3_user'])){
+      return true;
+    } else {
+      return false;
+    }
+  },
+  useUserRole: function(){
+    var config = S3config.findOne({type: 'global'});
+    if(config && config.use_user_role == 'on'){
+      return true;
+    } else {
+      return false;
+    }
+  }
+});
+
+var S3CallBack = function(error, result){
+  if(error){
+    var html = [];
+    html.push('<div class="alert alert-danger">');
+    html.push(error.message);
+    html.push('</div');
+    html = html.join('');
+    bootbox.dialog({
+      message: html,
+      title: "S3 Package Error"
+    });
+  }
+}
+
+Template.s3config_admin_users.events({
+  'click .remove-s3-admin-role-button': function (event, template) {
+    Meteor.call('S3RemoveAdminRole', this._id, S3CallBack);
+  },
+    'click .add-s3-admin-role-button': function (event, template) {
+    Meteor.call('S3AddAdminRole', this._id, S3CallBack)
+  },
+  'click .remove-s3-user-role-button': function (event, template) {
+    Meteor.call('S3RemoveUserRole', this._id, S3CallBack)
+  },
+  'click .add-s3-user-role-button': function (event, template) {
+    Meteor.call('S3AddUserRole', this._id, S3CallBack)
   }
 });

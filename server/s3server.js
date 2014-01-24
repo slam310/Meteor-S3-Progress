@@ -37,7 +37,7 @@ Meteor.publish('s3_global_config', function(){
   if(Roles.userIsInRole(this.userId, ['s3_admin'])) {
     return S3config.find({});
   } else {
-    return S3config.find({},{fields: {type: 1, allow_user_config: 1}});
+    return S3config.find({},{fields: {type: 1, allow_user_config: 1, use_user_role: 1}});
   }
 });
 
@@ -64,6 +64,50 @@ Meteor.publish('s3_users', function(){
 });
 
 Meteor.methods({
+  S3RemoveAdminRole: function(user_id){
+    if(this.userId == user_id){
+      throw new Meteor.Error(304, "You cannot modify your own record");
+    }
+
+    if(!Roles.userIsInRole(this.userId, ['s3_admin'])){
+      throw new Meteor.Error(401, "You must be an S3 admin to perform this request.");
+    }
+
+    Roles.removeUsersFromRoles(user_id, 's3_admin');
+  },
+  S3RemoveUserRole: function(user_id){
+    if(this.userId == user_id){
+      throw new Meteor.Error(304, "You cannot modify your own record");
+    }
+
+    if(!Roles.userIsInRole(this.userId, ['s3_admin'])){
+      throw new Meteor.Error(401, "You must be an S3 admin to perform this request.");
+    }
+
+    Roles.removeUsersFromRoles(user_id, 's3_user');
+  },
+  S3AddUserRole: function(user_id){
+    if(this.userId == user_id){
+      throw new Meteor.Error(304, "You cannot modify your own record");
+    }
+
+    if(!Roles.userIsInRole(this.userId, ['s3_admin'])){
+      throw new Meteor.Error(401, "You must be an S3 admin to perform this request.");
+    }
+
+    Roles.addUsersToRoles(user_id, 's3_user');
+  },
+  S3AddAdminRole: function(user_id){
+    if(this.userId == user_id){
+      throw new Meteor.Error(304, "You cannot modify your own record");
+    }
+
+    if(!Roles.userIsInRole(this.userId, ['s3_admin'])){
+      throw new Meteor.Error(401, "You must be an S3 admin to perform this request.");
+    }
+
+    Roles.addUsersToRoles(user_id, 's3_admin');
+  },
   AddS3AdminRole: function(user){
     if(typeof user.username == 'string'){
       var user = Meteor.users.findOne({username: user.username});

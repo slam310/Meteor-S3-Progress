@@ -22,6 +22,7 @@
 </template>
 
 <template name='s3list_of_user'>
+  {{#if useUserRole}}
   <div class='pull-left'>
     <button class='btn btn-xs btn-default s3-delete-selected-files'>Delete Selected</button>
     <button class='btn btn-xs btn-default s3-delete-selected-files'>
@@ -56,6 +57,7 @@
     {{/if}}
     </tbody>
   </table>
+  {{/if}}
 </template>
 
 <template name='s3config_user_form'>
