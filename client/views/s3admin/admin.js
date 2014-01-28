@@ -214,7 +214,7 @@ Template.s3config_admin_users.events({
     Meteor.call('S3RemoveAdminRole', this._id, S3CallBack);
   },
     'click .add-s3-admin-role-button': function (event, template) {
-    Meteor.call('S3AddAdminRole', this._id, S3CallBack)
+    Meteor.call('S3AddAdminRole', this._id, S3CallBack);
   },
   'click .remove-s3-user-role-button': function (event, template) {
     Meteor.call('S3RemoveUserRole', this._id, S3CallBack)
