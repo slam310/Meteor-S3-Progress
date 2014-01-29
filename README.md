@@ -26,7 +26,7 @@ This package makes use of the following packages:
  - collection-hooks
  - router
  
-All the styling is done via [Bootstrap](http://getbootstrap.com/), but I didn't make the bootstrap package a dependency.  That way you, the pacakge user, can style it as you see fit.
+All the styling is done via [Bootstrap](http://getbootstrap.com/), but I didn't make the bootstrap package a dependency.  That way you, the pacakge user, can style it as you see fit. You can `mrt add bootstrap-3` to see what the default styles I picked are.
 
 ## Setup
 ### Server Setup
