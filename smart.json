@@ -3,7 +3,7 @@
   "description": "A full featured helper for easily uploading files to Amazon S3 from your Meteor application.",
   "homepage": "https://github.com/digilord/Meteor-S3-Progress",
   "author": "Digilord <digilord@me.com>",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "git": "https://github.com/digilord/Meteor-S3-Progress.git",
   "packages": {
     "collection-hooks": {},
