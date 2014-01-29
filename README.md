@@ -1,5 +1,5 @@
-# ![S3](https://raw.github.com/digilord/Meteor-S3-Progress/master/aws-icon.jpg)Amazon S3 Uploader
-S3 provides a simple way of uploading files to the Amazon S3 service. This is useful for uploading images and files that you want accesible to the public. S3 is built on [Knox](https://github.com/LearnBoost/knox), a module that becomes available server-side after installing this package.
+# ![S3](https://raw.github.com/digilord/Meteor-S3-Progress/master/aws-icon.jpg) S3 Progress
+This package provides a simple way of uploading files to the Amazon S3 service. This is useful for uploading images and files that you want accesible to the public. The package is built on [Knox](https://github.com/LearnBoost/knox), a module that becomes available server-side after installation.
 
 ##Features
 
@@ -101,8 +101,10 @@ I recommend setting up an AWS Identity and Access Management (IAM) user per appl
 Forked from original work done by [Lepozepo/S3](https://github.com/Lepozepo/S3).
 
 ## To Do
-- Complete ability to have folders
+- Complete ability to have folders.
 - Allow end users to set a session variable to nest items within a bucket.
+- Drag-n-drop file upload.
+- Add ability to save files to the servers filesystem. This would change the package from being specifically S3 to a more general file upload solution. See issue #1.
 
 ## License
 The MIT License (MIT)
