@@ -57,8 +57,20 @@ Optionally you may skip this step.  If you do the package will prompt you for th
  * Add `{{> s3config}}` to access the configuration options for the package.
  * Add `{{> s3config_admin_users}}` to administer the users for the package.
  * Add `{{> s3config_user}}` to your user profile edit view to allow users to add in
- their own S3 configuration.
+ their own S3 configuration. (This doesn't exist yet.)
  
+#### s3upload & s3list_of_user
+![s3upload template](https://raw.github.com/digilord/Meteor-S3-Progress/master/images/s3upload.png)
+
+#### s3list_all
+![s3list_all template](https://raw.github.com/digilord/Meteor-S3-Progress/master/images/s3list_all.png)
+
+#### s3config
+![s3config template](https://raw.github.com/digilord/Meteor-S3-Progress/master/images/s3config.png)
+
+#### s3config_admin_users
+![s3config_admin_users template](https://raw.github.com/digilord/Meteor-S3-Progress/master/images/s3config_admin_users.png)
+
 ### URLS
 In an effort to make it easy for application developers to manage the S3 package and expose the features offered I have added some URL targets for use in your application.
 
