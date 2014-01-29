@@ -13,17 +13,17 @@ Package.on_use(function (api) {
   //Need service-configuration to use Meteor.method
   api.use([
     "underscore",
-    "ejson",
-    "service-configuration",
+    "handlebars",
     'templating',
     'collection-hooks',
     'momentjs',
     "accounts-base",
     "coffeescript",
     "roles",
-    "bootboxjs"
+    "bootboxjs",
+    "router"
     ], ["client", "server"]);
-  // api.use(["handlebars", "spark", "bootboxjs"], "client");
+  api.use(["handlebars-server"], "server");
   api.add_files([
     'client/common/common.html',
     'client/common/common.js',
@@ -35,7 +35,12 @@ Package.on_use(function (api) {
     'client/views/s3user/user.js',
     "s3.css"
     ], "client");
-  api.add_files(["server/s3server.js"], "server");
+  api.add_files([
+    'client/common/cors_configuration.handlebars',
+    'client/common/bucket_policy_configuration.handlebars',
+    "server/s3server.js",
+    "server/routes.js"
+    ], "server");
 
   // Collections shared by both client and server.
   api.add_files([

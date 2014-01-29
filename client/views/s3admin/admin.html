@@ -69,12 +69,19 @@
       <button id='S3ConfigSaveButton' type="submit" class="btn btn-default btn-block">Update</button>
     </form>
     {{/with}}
+    {{#if config}}
+    <br>
+    <p>
+      Right click the buttons below and choose "Save Link As" from the menu that pops up to save the configurations to a file that you can open and use later with your S3 configuration.
+    </p>
+    <div class='s3-config-example-buttons btn-group btn-group-justified'>
+      <a id='CORSConfigurationButton' class='btn btn-default' target='_blank' download="cors_configuration.xml" href='/s3/cors_configuration.xml' title='Right Click and Save Link As'>CORS Configuration</a>
+      <a id='BucketPolicyConfigurationButton' class='btn btn-default' download="bucket_policy_configuration.json" href='/s3/bucket_policy_configuration.json' title='Right Click and Save Link As'>Bucket Policy Configuration</a>
+    </div>
+    {{/if}}
   </div>
-  {{/if}}
-  {{/if}}
 
-  {{#if noAdminUsers}}
-  {{> s3config_no_users}}
+  {{/if}}
   {{else}}
   <button class='btn btn-default btn-block disabled'>The S3 application level service is configured.</button>
   {{/if}}

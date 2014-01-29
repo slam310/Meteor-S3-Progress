@@ -45,7 +45,9 @@ Template.s3config.helpers({
   type: function(){
     return global;
   }
-})
+});
+
+
 
 Template.s3config_form.helpers({
   on_active: function(){
@@ -135,13 +137,13 @@ Template.s3config_no_users.events({
         }
     });
     Accounts.createUser(user_object,function(err,result){
-      Deps.autorun(function(){
+      // Deps.autorun(function(){
         Meteor.subscribe('s3files');
         Meteor.subscribe('s3_global_config');
         Meteor.subscribe('s3config');
         Meteor.subscribe('s3_admin_users');
         Meteor.subscribe('s3_users');
-      });
+      // });
     });
   },
   'click #AddS3AdminRole': function(event, template) {
@@ -156,13 +158,13 @@ Template.s3config_no_users.events({
         }
     });
     Meteor.call('AddS3AdminRole', user_object, function(err,res){
-      Deps.autorun(function(){
+      // Deps.autorun(function(){
         Meteor.subscribe('s3files');
         Meteor.subscribe('s3_global_config');
         Meteor.subscribe('s3config');
         Meteor.subscribe('s3_admin_users');
         Meteor.subscribe('s3_users');
-      });
+      // });
     });
   }
 });

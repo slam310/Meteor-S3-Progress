@@ -1,12 +1,12 @@
 <template name='s3_file_row'>
   {{#isolate}}
   <tr class='{{processing}}'>
-    <td class='{{processing}} col-md-1'>
+    <td class='{{processing}} col-md-1 col-sm-1 col-xs-1 col-lg-1'>
       {{#if complete}}
       <input id='{{_id}}' type='checkbox' class='selected-file' value='{{_id}}'>
       {{/if}}
     </td>
-    <td class='{{processing}} s3-file-name col-md-6'>
+    <td class='{{processing}} s3-file-name col-md-6 col-sm-6 col-xs-6 col-lg-6'>
       {{#if error}}
       <!-- Can't download what doesn't exist :) -->
       {{else}}
@@ -14,9 +14,9 @@
       <a target='_blank' href='{{url}}'><span class='glyphicon glyphicon-cloud-download'></span></a>
       {{/if}}
       {{/if}}
-      <div class='path-popover'><small>{{name}}</small></div>
+      <div class='path-popover path-name'><small>{{name}}</small></div>
     </td>
-    <td class='text-right {{processing}} col-md-3 uploaded-time-ago ago'><small>{{uploaded_ago}}</small></td>
+    <td class='text-right {{processing}} col-md-3 col-sm-3 col-xs-3 col-lg-3 uploaded-time-ago ago'><small>{{uploaded_ago}}</small></td>
   </tr>
   {{/isolate}}
 </template>

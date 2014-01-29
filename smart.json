@@ -9,6 +9,8 @@
     "collection-hooks": {},
     "momentjs": {},
     "roles": {},
+    "router": {},
+    "handlebars-server": {},
     "bootboxjs": {
       "git": "https://github.com/digilord/meteor-bootboxjs.git"
     }
