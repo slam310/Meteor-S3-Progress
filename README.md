@@ -28,10 +28,11 @@ This package makes use of the following packages:
  
 All the styling is done via [Bootstrap](http://getbootstrap.com/), but I didn't make the bootstrap package a dependency.  That way you, the pacakge user, can style it as you see fit.
 
+## Setup
 ### Server Setup
 In order to use the S3 service you need to provide some information.  This information is stored in a collection on your server.  Defining it in a file on the server side of your application simply inserts the needed data into the collection that is used to store the credentials for the users and the overall configuration for the application.
 
-As an `s3_admin` you will be allowed to change these settings via a view on the client side of things.  I recommend that you protect this view so that general users cannot see it.
+As an `s3_admin` you will be allowed to change these settings via a view on the client side of things.  I recommend that you protect the `s3config` view so that general users cannot see it.
 
 
 
