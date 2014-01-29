@@ -24,6 +24,7 @@ This package makes use of the following packages:
  - momentjs
  - bootboxjs
  - collection-hooks
+ - router
  
 All the styling is done via [Bootstrap](http://getbootstrap.com/), but I didn't make the bootstrap package a dependency.  That way you, the pacakge user, can style it as you see fit.
 
@@ -56,7 +57,23 @@ Optionally you may skip this step.  If you do the package will prompt you for th
  * Add `{{> s3config_admin_users}}` to administer the users for the package.
  * Add `{{> s3config_user}}` to your user profile edit view to allow users to add in
  their own S3 configuration.
+ 
+### URLS
+In an effort to make it easy for application developers to manage the S3 package and expose the features offered I have added some URL targets for use in your application.
 
+#### Amazon S3 URLs
+URLs that are specific to the Amazon S3 service.
+
+ - /s3/cors_configuration.xml - The configuration for the Amazon S3 CORS permissions.
+ - /s3/bucket_policy_configuration.json - The configuration for the Amazon S3 bucket policy.
+ 
+#### General Package URLs
+I will add URLs to this section as requested by developers.
+ 
+## Hooks
+When a user is removed from the application all files that the user added to the general application file store are removed.
+
+Files that are stored in a private user store are only removed if the user has chosed to have them removed in the event that their account is removed from the application. This would allow a user to keep any assets that were uploaded via your application in the event they want to move to another service.
 
 ## Amazon S3 Setup
 For all of this to work you need to create an aws account. On their website create navigate to S3 and create a bucket. Navigate to your bucket and on the top right side you'll see your account name. Click it and go to Security Credentials. Once you're in Security Credentials create a new access key under the Access Keys (Access Key ID and Secret Access Key) tab. This is the info you will use for the first step of this plug. Go back to your bucket and select the properties OF THE BUCKET, not a file. Under Static Website Hosting you can Enable website hosting, to do that first upload a blank index.html file and then enable it. YOU'RE NOT DONE.
@@ -105,6 +122,7 @@ Forked from original work done by [Lepozepo/S3](https://github.com/Lepozepo/S3).
 - Allow end users to set a session variable to nest items within a bucket.
 - Drag-n-drop file upload.
 - Add ability to save files to the servers filesystem. This would change the package from being specifically S3 to a more general file upload solution. See issue [#1](https://github.com/digilord/Meteor-S3-Progress/issues/1).
+- Add option for users to have files stored in a private repository purged on the users account being removed from an application.
 
 ## License
 The MIT License (MIT)
