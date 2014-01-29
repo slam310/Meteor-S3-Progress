@@ -104,7 +104,7 @@ Forked from original work done by [Lepozepo/S3](https://github.com/Lepozepo/S3).
 - Complete ability to have folders.
 - Allow end users to set a session variable to nest items within a bucket.
 - Drag-n-drop file upload.
-- Add ability to save files to the servers filesystem. This would change the package from being specifically S3 to a more general file upload solution. See issue #1.
+- Add ability to save files to the servers filesystem. This would change the package from being specifically S3 to a more general file upload solution. See issue [#1](https://github.com/digilord/Meteor-S3-Progress/issues/1).
 
 ## License
 The MIT License (MIT)
