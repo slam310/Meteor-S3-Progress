@@ -136,16 +136,7 @@ Template.s3config_no_users.events({
           user_object['email'] = v.value;
         }
     });
-    Accounts.createUser(user_object,function(err,result){
-      Deps.autorun(function(){
-        Meteor.subscribe('s3files');
-        Meteor.subscribe('s3_global_config');
-        Meteor.subscribe('s3config');
-        Meteor.subscribe('s3_admin_users');
-        Meteor.subscribe('s3_users');
-        Meteor.subscribe('s3_all_users', Meteor.userId());
-      });
-    });
+    Accounts.createUser(user_object);
   },
   'click #AddS3AdminRole': function(event, template) {
     event.preventDefault();
@@ -158,16 +149,7 @@ Template.s3config_no_users.events({
           user_object['email'] = v.value;
         }
     });
-    Meteor.call('AddS3AdminRole', user_object, function(err,res){
-      Deps.autorun(function(){
-        Meteor.subscribe('s3files');
-        Meteor.subscribe('s3_global_config');
-        Meteor.subscribe('s3config');
-        Meteor.subscribe('s3_admin_users');
-        Meteor.subscribe('s3_users');
-        Meteor.subscribe('s3_all_users', Meteor.userId());
-      });
-    });
+    Meteor.call('AddS3AdminRole', user_object);
   }
 });
 
@@ -213,14 +195,6 @@ var S3CallBack = function(error, result){
       title: "S3 Package Error"
     });
   }
-
-  Meteor.subscribe('s3files');
-  Meteor.subscribe('s3_global_config');
-  Meteor.subscribe('s3config');
-  Meteor.subscribe('s3_admin_users');
-  Meteor.subscribe('s3_users');
-  Meteor.subscribe('s3_all_users', Meteor.userId());
-
 }
 
 Template.s3config_admin_users.events({

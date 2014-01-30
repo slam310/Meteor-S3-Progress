@@ -1,11 +1,9 @@
 
 Deps.autorun(function(){
-  var user = Meteor.user();
-  if(user){
-    Meteor.subscribe('s3files', user._id);
-    Meteor.subscribe('s3_admin_users', user._id);
-    Meteor.subscribe('s3_all_users', user._id);
-  }
+  console.log(Meteor.user())
+  Meteor.subscribe('s3files', Meteor.user());
+  Meteor.subscribe('s3_admin_users', Meteor.user());
+  Meteor.subscribe('s3_all_users', Meteor.user());
 });
 
 Meteor.subscribe('s3_global_config');
