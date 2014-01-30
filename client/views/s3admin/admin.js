@@ -1,7 +1,7 @@
 Template.s3list_all.helpers({
   noConfig: noConfig,
   users: function(){
-    var users = Meteor.users.find().fetch();
+    var users = Meteor.users.find({}).fetch();
     return users;
   },
   all_files: function(){
@@ -137,13 +137,14 @@ Template.s3config_no_users.events({
         }
     });
     Accounts.createUser(user_object,function(err,result){
-      // Deps.autorun(function(){
+      Deps.autorun(function(){
         Meteor.subscribe('s3files');
         Meteor.subscribe('s3_global_config');
         Meteor.subscribe('s3config');
         Meteor.subscribe('s3_admin_users');
         Meteor.subscribe('s3_users');
-      // });
+        Meteor.subscribe('s3_all_users', Meteor.userId());
+      });
     });
   },
   'click #AddS3AdminRole': function(event, template) {
@@ -158,13 +159,14 @@ Template.s3config_no_users.events({
         }
     });
     Meteor.call('AddS3AdminRole', user_object, function(err,res){
-      // Deps.autorun(function(){
+      Deps.autorun(function(){
         Meteor.subscribe('s3files');
         Meteor.subscribe('s3_global_config');
         Meteor.subscribe('s3config');
         Meteor.subscribe('s3_admin_users');
         Meteor.subscribe('s3_users');
-      // });
+        Meteor.subscribe('s3_all_users', Meteor.userId());
+      });
     });
   }
 });
@@ -198,7 +200,9 @@ Template.s3config_admin_users.helpers({
 });
 
 var S3CallBack = function(error, result){
+  console.log('Enter S3CallBack');
   if(error){
+    console.log('error S3CallBack');
     var html = [];
     html.push('<div class="alert alert-danger">');
     html.push(error.message);
@@ -209,13 +213,22 @@ var S3CallBack = function(error, result){
       title: "S3 Package Error"
     });
   }
+
+  Meteor.subscribe('s3files');
+  Meteor.subscribe('s3_global_config');
+  Meteor.subscribe('s3config');
+  Meteor.subscribe('s3_admin_users');
+  Meteor.subscribe('s3_users');
+  Meteor.subscribe('s3_all_users', Meteor.userId());
+
 }
 
 Template.s3config_admin_users.events({
   'click .remove-s3-admin-role-button': function (event, template) {
     Meteor.call('S3RemoveAdminRole', this._id, S3CallBack);
   },
-    'click .add-s3-admin-role-button': function (event, template) {
+  'click .add-s3-admin-role-button': function (event, template) {
+    console.log(this._id)
     Meteor.call('S3AddAdminRole', this._id, S3CallBack);
   },
   'click .remove-s3-user-role-button': function (event, template) {

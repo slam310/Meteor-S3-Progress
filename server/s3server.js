@@ -39,11 +39,11 @@ Meteor.publish(null, function (){
   return Meteor.roles.find({})
 });
 
-Meteor.publish('s3files', function(){
-  if(Roles.userIsInRole(this.userId, ['s3_admin'])) {
-    return S3files.find();
+Meteor.publish('s3files', function(_user_id){
+  if(Roles.userIsInRole(_user_id, ['s3_admin'])) {
+    return S3files.find({});
   } else {
-    return S3files.find({user: this.userId})
+    return S3files.find({user: _user_id})
   }
 });
 
@@ -55,8 +55,8 @@ Meteor.publish('s3_global_config', function(){
   }
 });
 
-Meteor.publish('s3_all_users', function(){
-  if(Roles.userIsInRole(this.userId, ['s3_admin'])) {
+Meteor.publish('s3_all_users', function(_user_id){
+  if(Roles.userIsInRole(_user_id, ['s3_admin'])) {
     return Meteor.users.find({});
   }
 });
@@ -65,8 +65,8 @@ Meteor.publish('s3config', function(){
   return S3config.find({user: this.userId, type: {$ne: 'global'}})
 });
 
-Meteor.publish('s3_admin_users', function(){
-  if(Roles.userIsInRole(this.userId, ['s3_admin'])) {
+Meteor.publish('s3_admin_users', function(_user_id){
+  if(_user_id && Roles.userIsInRole(_user_id, ['s3_admin'])) {
     return Roles.getUsersInRole(['s3_admin']);
   }
 });

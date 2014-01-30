@@ -29,7 +29,7 @@ This package makes use of the following packages:
 All the styling is done via [Bootstrap](http://getbootstrap.com/), but I didn't make the bootstrap package a dependency.  That way you, the pacakge user, can style it as you see fit. You can `mrt add bootstrap-3` to see what the default styles I picked are.
 
 ## Setup
-### Server Setup
+#### Server Setup
 In order to use the S3 service you need to provide some information.  This information is stored in a collection on your server.  Defining it in a file on the server side of your application simply inserts the needed data into the collection that is used to store the credentials for the users and the overall configuration for the application.
 
 As an `s3_admin` you will be allowed to change these settings via a view on the client side of things.  I recommend that you protect the `s3config` view so that general users cannot see it.
@@ -50,7 +50,7 @@ Meteor.call("S3config",{
 ```
 Optionally you may skip this step.  If you do the package will prompt you for the configuration.
 
-### Templates
+#### Templates
  * Add `{{> s3upload}}` to the template where you would like the upload HTML to reside.
  * Add `{{> s3list_all}}` for a listing off all the files in S3 for this application.
  * Add `{{> s3list_of_user}}` for a listing of the logged in users files in S3.
@@ -59,31 +59,31 @@ Optionally you may skip this step.  If you do the package will prompt you for th
  * Add `{{> s3config_user}}` to your user profile edit view to allow users to add in
  their own S3 configuration. (This doesn't exist yet.)
  
-#### s3upload & s3list_of_user
+##### s3upload & s3list_of_user
 ![s3upload template](https://raw.github.com/digilord/Meteor-S3-Progress/master/images/s3upload.png)
 
-#### s3list_all
+##### s3list_all
 ![s3list_all template](https://raw.github.com/digilord/Meteor-S3-Progress/master/images/s3list_all.png)
 
-#### s3config
+##### s3config
 ![s3config template](https://raw.github.com/digilord/Meteor-S3-Progress/master/images/s3config.png)
 
-#### s3config_admin_users
+##### s3config_admin_users
 ![s3config_admin_users template](https://raw.github.com/digilord/Meteor-S3-Progress/master/images/s3config_admin_users.png)
 
-### URLS
+#### URLS
 In an effort to make it easy for application developers to manage the S3 package and expose the features offered I have added some URL targets for use in your application.
 
-#### Amazon S3 URLs
+##### Amazon S3 URLs
 URLs that are specific to the Amazon S3 service.
 
  - /s3/cors_configuration.xml - The configuration for the Amazon S3 CORS permissions.
  - /s3/bucket_policy_configuration.json - The configuration for the Amazon S3 bucket policy.
  
-#### General Package URLs
+##### General Package URLs
 I will add URLs to this section as requested by developers.
  
-## Hooks
+### Hooks
 When a user is removed from the application all files that the user added to the general application file store are removed.
 
 Files that are stored in a private user store are only removed if the user has chosed to have them removed in the event that their account is removed from the application. This would allow a user to keep any assets that were uploaded via your application in the event they want to move to another service.
@@ -91,7 +91,7 @@ Files that are stored in a private user store are only removed if the user has c
 ## Amazon S3 Setup
 For all of this to work you need to create an aws account. On their website create navigate to S3 and create a bucket. Navigate to your bucket and on the top right side you'll see your account name. Click it and go to Security Credentials. Once you're in Security Credentials create a new access key under the Access Keys (Access Key ID and Secret Access Key) tab. This is the info you will use for the first step of this plug. Go back to your bucket and select the properties OF THE BUCKET, not a file. Under Static Website Hosting you can Enable website hosting, to do that first upload a blank index.html file and then enable it. YOU'RE NOT DONE.
 
-### CORS Setup
+#### CORS Setup
 You need to set permissions so that everyone can see what's in there. Under the Permissions tab click Edit CORS Configuration and paste this:
 
 ```
@@ -104,7 +104,7 @@ You need to set permissions so that everyone can see what's in there. Under the 
 </CORSConfiguration>
 ```
 
-### Bucket Policy
+#### Bucket Policy
 Save it. Now click Edit bucket policy and paste this, REPLACE THE BUCKET NAME WITH YOUR OWN:
 
 ```
@@ -124,11 +124,11 @@ Save it. Now click Edit bucket policy and paste this, REPLACE THE BUCKET NAME WI
 }
 ```
 
-### Users
+#### Users
 I recommend setting up an AWS Identity and Access Management (IAM) user per application.  Please refer to the AWS documentation on how to add a user.
 
 ## Credits
-Forked from original work done by [Lepozepo/S3](https://github.com/Lepozepo/S3).
+Forked from original work done by [Lepozepo/S3](https://github.com/Lepozepo/S3). At this point in the packages life I have re-written nearly all of the internals. I only mention the original author to give credit where credit is due.
 
 ## To Do
 - Complete ability to have folders.

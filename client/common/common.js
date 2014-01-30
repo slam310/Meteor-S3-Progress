@@ -1,9 +1,16 @@
-Meteor.subscribe('s3files');
+
+Deps.autorun(function(){
+  var user = Meteor.user();
+  if(user){
+    Meteor.subscribe('s3files', user._id);
+    Meteor.subscribe('s3_admin_users', user._id);
+    Meteor.subscribe('s3_all_users', user._id);
+  }
+});
+
 Meteor.subscribe('s3_global_config');
 Meteor.subscribe('s3config');
-Meteor.subscribe('s3_admin_users');
 Meteor.subscribe('s3_users');
-Meteor.subscribe('s3_all_users');
 
 noConfig = function(){
   var existing_global_config = S3config.findOne({type: 'global'});

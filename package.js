@@ -21,7 +21,8 @@ Package.on_use(function (api) {
     "coffeescript",
     "roles",
     "bootboxjs",
-    "router"
+    "router",
+    "deps"
     ], ["client", "server"]);
   api.use(["handlebars-server"], "server");
   api.add_files([
