@@ -43,7 +43,6 @@ Meteor.publish('s3files', function(user){
   if(!user)
     return;
   var _user_id = user._id;
-  console.log('s3files _user_id: ',_user_id)
   if(Roles.userIsInRole(_user_id, ['s3_admin'])) {
     return S3files.find({});
   } else {
@@ -60,6 +59,8 @@ Meteor.publish('s3_global_config', function(){
 });
 
 Meteor.publish('s3_all_users', function(user){
+  if(!user)
+    return;
   var _user_id = user._id;
   if(Roles.userIsInRole(_user_id, ['s3_admin'])) {
     return Meteor.users.find({});
@@ -71,6 +72,8 @@ Meteor.publish('s3config', function(){
 });
 
 Meteor.publish('s3_admin_users', function(user){
+  if(!user)
+    return;
   var _user_id = user._id;
   if(_user_id && Roles.userIsInRole(_user_id, ['s3_admin'])) {
     return Roles.getUsersInRole(['s3_admin']);
@@ -146,9 +149,9 @@ Meteor.methods({
   S3config:function(obj){
     var global = S3config.findOne({type: 'global'})
     if(global){
-      obj.type = 'global';
       S3config.update({type: 'global'}, {$set: obj})
     } else {
+      obj.type = 'global';
       S3config.insert(obj)
     }
   },

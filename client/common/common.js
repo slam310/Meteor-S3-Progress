@@ -1,6 +1,5 @@
 
 Deps.autorun(function(){
-  console.log(Meteor.user())
   Meteor.subscribe('s3files', Meteor.user());
   Meteor.subscribe('s3_admin_users', Meteor.user());
   Meteor.subscribe('s3_all_users', Meteor.user());
