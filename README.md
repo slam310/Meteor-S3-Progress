@@ -88,6 +88,16 @@ When a user is removed from the application all files that the user added to the
 
 Files that are stored in a private user store are only removed if the user has chosed to have them removed in the event that their account is removed from the application. This would allow a user to keep any assets that were uploaded via your application in the event they want to move to another service.
 
+### Resetting the Collections
+To reset the collections used by this package run the following commands in the `meteor mongo` shell.
+
+```
+db.s3config.remove()
+db.s3files.remove()
+``` 
+
+Those commands will remove all entries from those collections allowing you to start fresh.
+
 ## Amazon S3 Setup
 For all of this to work you need to create an aws account. On their website create navigate to S3 and create a bucket. Navigate to your bucket and on the top right side you'll see your account name. Click it and go to Security Credentials. Once you're in Security Credentials create a new access key under the Access Keys (Access Key ID and Secret Access Key) tab. This is the info you will use for the first step of this plug. Go back to your bucket and select the properties OF THE BUCKET, not a file. Under Static Website Hosting you can Enable website hosting, to do that first upload a blank index.html file and then enable it. YOU'RE NOT DONE.
 
