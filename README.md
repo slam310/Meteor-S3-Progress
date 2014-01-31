@@ -143,9 +143,20 @@ Forked from original work done by [Lepozepo/S3](https://github.com/Lepozepo/S3).
 ## To Do
 - Complete ability to have folders.
 - Allow end users to set a session variable to nest items within a bucket.
-- Drag-n-drop file upload.
-- Add ability to save files to the servers filesystem. This would change the package from being specifically S3 to a more general file upload solution. See issue [#1](https://github.com/digilord/Meteor-S3-Progress/issues/1).
-- Add option for users to have files stored in a private repository purged on the users account being removed from an application.
+
+## Development
+If you want to contribute to the project here is how to set things up.
+
+1. Clone the repo
+2. `cd example`
+3. `mrt install` This installs all the required packages
+4. `meteor` Start meteor.
+5. Add a user via the Sign In/Sign Up button.
+
+The example application will prompt you to specify a user to add the `s3_admin` role to. You need to use the same username you used when you signed up.
+
+Next the example application will show you the setup views. You should have already setup an AWS S3 bucket and credentials.
+
 
 ## License
 The MIT License (MIT)
