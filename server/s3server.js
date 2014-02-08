@@ -22,16 +22,16 @@ Meteor.startup(function(){
 
 getS3Config = function(){
   var user_id = this.userId;
-    var user = Meteor.users.findOne({_id: user_id});
-    var s3config;
-    var s3config_user = S3config.findOne({user_id: user_id});
-    if(typeof s3config_user == 'object'){
-      s3config = s3config_user
-    } else {
-      s3config = S3config.findOne({type: 'global'});
-    }
+  var user = Meteor.users.findOne({_id: user_id});
+  var s3config;
+  var s3config_user = S3config.findOne({user_id: user_id});
+  if(typeof s3config_user == 'object'){
+    s3config = s3config_user
+  } else {
+    s3config = S3config.findOne({type: 'global'});
+  }
 
-    return s3config;
+  return s3config;
 }
 
 // Publish all the roles to the client per the Roles package documentation.

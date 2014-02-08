@@ -40,6 +40,7 @@ Package.on_use(function (api) {
     'client/common/cors_configuration.handlebars',
     'client/common/bucket_policy_configuration.handlebars',
     "server/s3server.js",
+    "server/s3_user_hooks.js",
     "server/routes.js"
     ], "server");
 

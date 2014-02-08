@@ -37,7 +37,27 @@
     </div>
   </div>
 
+  <div class="form-group">
+    <label for="S3DeleteUserFiles" class="col-sm-3 control-label">Delete My Files</label>
+    <div class='col-sm-9'>
+      <div class="btn-group" data-toggle="buttons">
+        <label class="btn {{delete_user_files_on_active}}">
+          <input type="radio" name="deleteUserFiles" class='s3-delete-user-files-radio' id="S3DeleteUserFilesOn" value='on'> Yes
+        </label>
+        <label class="btn {{delete_user_files_off_active}}">
+          <input type="radio" name="deleteUserFiles" class='s3-delete-user-files-radio' id="S3DeleteUserFilesOff" value='off'> No
+        </label>
+      </div>
+      <br><br>
+      <div class='alert alert-info'>
+        Setting this option to Yes removes all files stored by the application in the your private
+        S3 bucket.
+      </div>
+    </div>
+  </div>
+
   {{#if type 'global'}}
+  <h3>Global Options</h3>
   <div class="form-group">
     <label for="S3AllowUserConfig" class="col-sm-3 control-label">Allow Per User S3</label>
     <div class='col-sm-9'>
@@ -75,6 +95,23 @@
       </div>
     </div>
   </div>
-
+    <div class="form-group">
+    <label for="S3DeleteAppUserFiles" class="col-sm-3 control-label">Delete User Files</label>
+    <div class='col-sm-9'>
+      <div class="btn-group" data-toggle="buttons">
+        <label class="btn {{delete_all_user_files_on_active}}">
+          <input type="radio" name="deleteUserFiles" class='s3-delete-user-files-radio' id="S3DeleteAppUserFilesOn" value='on'> Yes
+        </label>
+        <label class="btn {{delete_all_user_files_off_active}}">
+          <input type="radio" name="deleteUserFiles" class='s3-delete-user-files-radio' id="S3DeleteAppUserFilesOff" value='off'> No
+        </label>
+      </div>
+      <br><br>
+      <div class='alert alert-info'>
+        Setting this option to Yes removes all files stored for this user by the application in the users private
+        S3 bucket.
+      </div>
+    </div>
+  </div>
   {{/if}}
 </template>
