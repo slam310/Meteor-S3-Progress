@@ -36,7 +36,7 @@ As an `s3_admin` you will be allowed to change these settings via a view on the 
 
 
 
-Define your Amazon S3 credentials in a file in your `server` direcotry or add in
+Define your Amazon S3 credentials in a file in your `server` directory or add in
 the `{{> s3config}}` template below to add the same credentials via a view.
 
 ```
