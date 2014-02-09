@@ -1,6 +1,11 @@
 # ![S3](https://raw.github.com/digilord/Meteor-S3-Progress/master/aws-icon.jpg) S3 Progress
 This package provides a simple way of uploading files to the Amazon S3 service. This is useful for uploading images and files that you want accesible to the public. The package is built on [Knox](https://github.com/LearnBoost/knox), a module that becomes available server-side after installation.
 
+## Looking for UI Comments
+I don't think I am a great user interface designer. I put things together in a way that, to me, makes sense. Is there a better way? I know how to turn a wireframe into an interface. Are any of the github people who starred or are watching this repository able to assist with improving the interface used here?
+
+![S3 Wireframe](https://raw.github.com/digilord/Meteor-S3-Progress/master/images/wireframe.png)
+
 ##Features
 
 * Progress bar
