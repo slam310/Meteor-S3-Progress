@@ -30,7 +30,7 @@ This package makes use of the following packages:
  - bootboxjs
  - collection-hooks
  - router
- 
+
 All the styling is done via [Bootstrap](http://getbootstrap.com/), but I didn't make the bootstrap package a dependency.  That way you, the pacakge user, can style it as you see fit. You can `mrt add bootstrap-3` to see what the default styles I picked are.
 
 ## Setup
@@ -59,12 +59,12 @@ Optionally you may skip this step.  If you do the package will prompt you for th
 #### Templates
  * Add `{{> s3upload}}` to the template where you would like the upload HTML to reside.
  * Add `{{> s3list_all}}` for a listing off all the files in S3 for this application.
- * Add `{{> s3list_of_user}}` for a listing of the logged in users files in S3.
+ * Add `{{> s3list_of_user}}` for a listing of the logged in users files in Files.
  * Add `{{> s3config}}` to access the configuration options for the package.
  * Add `{{> s3config_admin_users}}` to administer the users for the package.
  * Add `{{> s3config_user}}` to your user profile edit view to allow users to add in
  their own S3 configuration. (This doesn't exist yet.)
- 
+
 ##### s3upload & s3list_of_user
 ![s3upload template](https://raw.github.com/digilord/Meteor-S3-Progress/master/images/s3upload.png)
 
@@ -85,10 +85,10 @@ URLs that are specific to the Amazon S3 service.
 
  - /s3/cors_configuration.xml - The configuration for the Amazon S3 CORS permissions.
  - /s3/bucket_policy_configuration.json - The configuration for the Amazon S3 bucket policy.
- 
+
 ##### General Package URLs
 I will add URLs to this section as requested by developers.
- 
+
 ### Hooks
 When a user is removed from the application all files that the user added to the general application file store are removed.
 
@@ -100,7 +100,7 @@ To reset the collections used by this package run the following commands in the 
 ```
 db.s3config.remove()
 db.s3files.remove()
-``` 
+```
 
 Those commands will remove all entries from those collections allowing you to start fresh.
 
@@ -163,6 +163,12 @@ The example application will prompt you to specify a user to add the `s3_admin` 
 
 Next the example application will show you the setup views. You should have already setup an AWS S3 bucket and credentials.
 
+## Support
+You have a few options for getting support:
+
+ - File an issue
+ - IRC channel \#s3-progress on freenode
+ - Send a message to me on Twitter @digilord
 
 ## License
 The MIT License (MIT)
