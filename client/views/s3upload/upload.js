@@ -31,8 +31,8 @@ Template.s3upload.helpers({
       return false;
     }
   },
-  noConfig: noConfig,
-  useUserRole: useUserRole
+  noConfig: Files.noConfig,
+  useUserRole: Files.useUserRole
 });
 
 Template.s3upload.events({

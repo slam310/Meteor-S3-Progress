@@ -1,5 +1,5 @@
 Template.s3list_all.helpers({
-  noConfig: noConfig,
+  noConfig: Files.noConfig,
   users: function(){
     var users = Meteor.users.find({}).fetch();
     return users;
@@ -29,10 +29,10 @@ Template.s3list_all.helpers({
 });
 
 Template.s3config.helpers({
-  noConfig: noConfig,
+  noConfig: Files.noConfig,
   noAdminUsers: function(){
     var admin_users = Roles.getUsersInRole('s3_admin').fetch();
-    if(admin_users.length == 0 && noConfig()){
+    if(admin_users.length == 0 && Files.noConfig()){
       return true;
     } else {
       return false;

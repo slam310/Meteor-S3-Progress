@@ -14,7 +14,7 @@ Template.s3_file_row.helpers({
     }
   },
   processing: function(){
-    if(this.percent_uploaded != 100 && this.error != true) {
+    if(this.percent_uploaded !== 100 && this.error !== true) {
       return 's3-upload-progressing';
     } else if(this.error){
       return 's3-upload-error';
@@ -33,40 +33,38 @@ Template.s3_file_row.helpers({
 
 Template.s3_file_row.events({
   'click .uploaded-time-ago': function (event, template) {
-    if(template.data.percent_uploaded != 100)
+    if(template.data.percent_uploaded !== 100)
       return '';
 
     var button = $(template.find('.uploaded-time-ago'));
-
+    var html = [];
     if(button.hasClass('ago')){
       button.removeClass('ago');
-      var html = [];
       html.push('<small>');
       html.push(moment(template.data.modifiedAt).calendar());
       html.push('</small>');
-      button.html(html.join(""));
+      button.html(html.join(''));
     } else {
       button.addClass('ago');
-      var html = [];
       html.push('<small>');
       html.push(moment(template.data.modifiedAt).fromNow());
       html.push('</small>');
-      button.html(html.join(""));
+      button.html(html.join(''));
     }
   },
   'click .path-popover': function(event, template){
-    if(template.data.percent_uploaded != 100)
+    if(template.data.percent_uploaded !== 100)
       return '';
 
     var button = $(template.find('.path-popover'));
 
     var options = {
       container: 'body',
-      content: "Path: " + template.data.path,
+      content: 'Path: ' + template.data.path,
       placement: 'bottom',
       html: true
-    }
-    button.popover(options)
+    };
+    button.popover(options);
   }
 });
 
@@ -83,17 +81,17 @@ Template.s3list_all.events({
     var checked_files = [];
     _.each(files, function(file){
       if(file.checked){
-        checked_files.push(file.id)
+        checked_files.push(file.id);
       }
     });
 
     if(checked_files.length > 0){
-      bootbox.confirm("You are about to remove "+ checked_files.length + " files.  This CANNOT BE UNDONE!", function(confirmed) {
+      bootbox.confirm('You are about to remove '+ checked_files.length + ' files.  This CANNOT BE UNDONE!', function(confirmed) {
         if(confirmed){
           _.each(checked_files, function(file){
-            Meteor.call('S3delete', file)
-          })
-          Session.set('s3-file-name', null)
+            Meteor.call('S3delete', file);
+          });
+          Session.set('s3-file-name', null);
           // Do something
         }
       });
@@ -116,7 +114,7 @@ Template.s3list_of_user.helpers({
       return false;
     }
   },
-  useUserRole: useUserRole
+  useUserRole: Files.useUserRole
 });
 
 Template.s3list_of_user.events({
@@ -132,16 +130,16 @@ Template.s3list_of_user.events({
     var checked_files = [];
     _.each(files, function(file){
       if(file.checked){
-        checked_files.push(file.id)
+        checked_files.push(file.id);
       }
     });
 
     if(checked_files.length > 0){
-      bootbox.confirm("You are about to remove "+ checked_files.length + " files.  This CANNOT BE UNDONE!", function(confirmed) {
+      bootbox.confirm('You are about to remove '+ checked_files.length + ' files.  This CANNOT BE UNDONE!', function(confirmed) {
         if(confirmed){
           _.each(checked_files, function(file){
-            Meteor.call('S3delete', file)
-          })
+            Meteor.call('S3delete', file);
+          });
 
           // Do something
         }
