@@ -163,6 +163,9 @@ The example application will prompt you to specify a user to add the `s3_admin` 
 
 Next the example application will show you the setup views. You should have already setup an AWS S3 bucket and credentials.
 
+### Reset Mongo
+To reset the mongo database used in the example application run `meteor reset`. This will remove ALL collections used in the example applicaiton. It WILL NOT remove any files you have uploaded to S3.
+
 ## Support
 You have a few options for getting support:
 
