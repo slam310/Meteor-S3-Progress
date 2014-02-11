@@ -41,6 +41,9 @@
 </template>
 
 <template name='s3config'>
+  {{#if noAdminUsers}}
+    {{> s3config_no_users}}
+  {{/if}}
   {{#if isInRole 's3_admin'}}
   {{#if noConfig}}
   <div class='s3alert well well-small'>

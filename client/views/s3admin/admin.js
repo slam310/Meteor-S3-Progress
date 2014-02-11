@@ -32,7 +32,7 @@ Template.s3config.helpers({
   noConfig: Files.noConfig,
   noAdminUsers: function(){
     var admin_users = Roles.getUsersInRole('s3_admin').fetch();
-    if(admin_users.length == 0 && Files.noConfig()){
+    if(admin_users.length == 0){
       return true;
     } else {
       return false;
