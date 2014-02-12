@@ -91,7 +91,9 @@ Template.s3config.events({
     $.each(serialized_form, function(i, v) {
         s3configObject[v.name] = v.value;
     });
-    Meteor.call('S3ConfigSave', s3configObject);
+    Meteor.call('S3AdminConfig', s3configObject, function(err, res){
+      console.log(err);
+    });
   }
 });
 

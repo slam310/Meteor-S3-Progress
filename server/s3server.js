@@ -146,13 +146,13 @@ Meteor.methods({
       S3config.insert(obj);
     }
   },
-  S3config:function(obj){
-    var global = S3config.findOne({type: 'global'})
+  S3AdminConfig: function(obj){
+    var global = S3config.findOne({type: 'global'});
     if(global){
-      S3config.update({type: 'global'}, {$set: obj})
+      S3config.update({type: 'global'}, {$set: obj});
     } else {
       obj.type = 'global';
-      S3config.insert(obj)
+      S3config.insert(obj);
     }
   },
   S3upload:function(options){
