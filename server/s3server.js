@@ -147,7 +147,12 @@ Meteor.methods({
     }
   },
   S3AdminConfig: function(obj){
+    // The application global configuration is special.
+    // We need to see if one exists. There can be only ONE.
     var global = S3config.findOne({type: 'global'});
+
+    // If we have a global object then we just need to update it with the new settings.
+    // Otherwise we need to add the type of 'global' and create a new one.
     if(global){
       delete obj._id;
       S3config.update({type: 'global'}, {$set: obj});
