@@ -33,49 +33,60 @@ This package makes use of the following packages:
 
 All the styling is done via [Bootstrap](http://getbootstrap.com/), but I didn't make the bootstrap package a dependency.  That way you, the pacakge user, can style it as you see fit. You can `mrt add bootstrap-3` to see what the default styles I picked are.
 
-## Setup
-#### Server Setup
-In order to use the S3 service you need to provide some information.  This information is stored in a collection on your server.  Defining it in a file on the server side of your application simply inserts the needed data into the collection that is used to store the credentials for the users and the overall configuration for the application.
+### Specific Package Settings
+***Failure to adhere to the settings for individual packages listed below will result in the S3-Progress package to perform poorly or erratically.***
 
-As an `s3_admin` you will be allowed to change these settings via a view on the client side of things.  I recommend that you protect the `s3config` view so that general users cannot see it.
-
-
-
-Define your Amazon S3 credentials in a file in your `server` directory or add in
-the `{{> s3config}}` template below to add the same credentials via a view.
+##### accounts-base
+This package requires that you use `accounts-base` with the following options.
 
 ```
-Meteor.call("S3config",{
-	key: 'amazonKey',
-	secret: 'amazonSecret',
-	bucket: 'bucketName',
-	directory: '/',				// Set this to a directory in this bucket.
-	allow_user_config: 'on', 	// Valid values 'on' and 'off'
-	use_user_role: 'off'		// Valid values 'on' and 'off'
+Accounts.ui.config({
+  passwordSignupFields: 'USERNAME_AND_EMAIL'
 });
 ```
-Optionally you may skip this step.  If you do the package will prompt you for the configuration.
+
+These settings ensure that the package has the proper fields in a user document to work with.
+
+## Installation & Setup
+In order to use the S3 package you need to provide some information.  This information is stored in a collection on your server.  
+
+Add in the `{{> s3config}}` template below to a view to add the required credentials and application level settings.
+
 
 #### Templates
- * Add `{{> s3upload}}` to the template where you would like the upload HTML to reside.
- * Add `{{> s3list_all}}` for a listing off all the files in S3 for this application.
- * Add `{{> s3list_of_user}}` for a listing of the logged in users files in Files.
- * Add `{{> s3config}}` to access the configuration options for the package.
- * Add `{{> s3config_admin_users}}` to administer the users for the package.
- * Add `{{> s3config_user}}` to your user profile edit view to allow users to add in
- their own S3 configuration. (This doesn't exist yet.)
 
-##### s3upload & s3list_of_user
+##### s3upload
+
+Add `{{> s3upload}}` to the template where you would like the upload HTML to reside.
+
 ![s3upload template](https://raw.github.com/digilord/Meteor-S3-Progress/master/images/s3upload.png)
 
+#### s3list_of_user
+Add `{{> s3list_of_user}}` for a listing of the logged in users files in the S3Files
+collection.
+
+![s3upload template](https://raw.github.com/digilord/Meteor-S3-Progress/master/images/s3list_of_user.png)
+
 ##### s3list_all
+Add `{{> s3list_all}}` for a listing off all the files in S3 for this application.
+
 ![s3list_all template](https://raw.github.com/digilord/Meteor-S3-Progress/master/images/s3list_all.png)
 
 ##### s3config
+Add `{{> s3config}}` to access the configuration options for the package. You, the application developer, should protect this in your templates. 
+
+**Failure to protect this view WILL result in the credentials for your S3 bucket 
+for this application to be exposed to the Internet at large.**
+
 ![s3config template](https://raw.github.com/digilord/Meteor-S3-Progress/master/images/s3config.png)
 
 ##### s3config_admin_users
+Add `{{> s3config_admin_users}}` to administer the users permissions for the package. 
 ![s3config_admin_users template](https://raw.github.com/digilord/Meteor-S3-Progress/master/images/s3config_admin_users.png)
+
+#### s3config_user
+Add `{{> s3config_user}}` to your user profile edit view to allow users to add in
+ their own S3 configuration. (This doesn't exist yet.)
 
 #### URLS
 In an effort to make it easy for application developers to manage the S3 package and expose the features offered I have added some URL targets for use in your application.
@@ -145,6 +156,9 @@ I recommend setting up an AWS Identity and Access Management (IAM) user per appl
 
 ## Credits
 Forked from original work done by [Lepozepo/S3](https://github.com/Lepozepo/S3). At this point in the packages life I have re-written nearly all of the internals. I only mention the original author to give credit where credit is due.
+
+ * [jayfallon](https://github.com/jayfallon) - End user testing and documentation contributions
+ * [Yahkob](https://github.com/jayfallon) - Code review and documentation contributions
 
 ## To Do
 - Complete ability to have folders.
