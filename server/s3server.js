@@ -149,6 +149,7 @@ Meteor.methods({
   S3AdminConfig: function(obj){
     var global = S3config.findOne({type: 'global'});
     if(global){
+      delete obj._id;
       S3config.update({type: 'global'}, {$set: obj});
     } else {
       obj.type = 'global';
