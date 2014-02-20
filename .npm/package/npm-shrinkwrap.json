@@ -10,18 +10,23 @@
           "version": "0.2.8",
           "dependencies": {
             "sax": {
-              "version": "0.5.5"
+              "version": "0.5.8"
             }
           }
         },
         "debug": {
-          "version": "0.7.2"
+          "version": "0.7.4"
         },
         "stream-counter": {
           "version": "0.1.0",
           "dependencies": {
             "readable-stream": {
-              "version": "1.0.17"
+              "version": "1.0.26",
+              "dependencies": {
+                "string_decoder": {
+                  "version": "0.10.25-1"
+                }
+              }
             }
           }
         }
@@ -29,6 +34,41 @@
     },
     "stream-buffers": {
       "version": "0.2.5"
+    },
+    "color-util-logs": {
+      "version": "0.0.1",
+      "dependencies": {
+        "util": {
+          "version": "0.10.3",
+          "dependencies": {
+            "inherits": {
+              "version": "2.0.1"
+            }
+          }
+        },
+        "cli-color": {
+          "version": "0.2.3",
+          "dependencies": {
+            "es5-ext": {
+              "version": "0.9.2"
+            },
+            "memoizee": {
+              "version": "0.2.6",
+              "dependencies": {
+                "event-emitter": {
+                  "version": "0.2.2"
+                },
+                "next-tick": {
+                  "version": "0.1.0"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "should": {
+      "version": "3.1.2"
     }
   }
 }

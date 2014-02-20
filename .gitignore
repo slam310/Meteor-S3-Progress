@@ -1,2 +1,5 @@
 .build*
 .DS_store
+tests/nightwatch/screenshots
+tests/nightwatch/reports
+tests/selenium_out.log
