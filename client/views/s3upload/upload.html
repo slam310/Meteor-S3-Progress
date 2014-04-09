@@ -34,10 +34,10 @@
   {{#isolate}}
   {{#if show_progress}}
   {{#if has_errors}}
-  <div class='btn btn-block btn-danger'>Upload Aborted</div>
+  <div class='btn btn-block btn-danger upload-aborted'>Upload Aborted</div>
   {{else}}
   {{#if complete}}
-  <div class='btn btn-block btn-success'>Upload Complete</div>
+  <div class='btn btn-block btn-success upload-complete'>Upload Complete</div>
   {{else}}
   <div class="progress">
     <div class="progress-bar {{error_class}}" role="progressbar" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%">

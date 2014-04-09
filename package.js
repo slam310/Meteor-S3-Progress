@@ -80,6 +80,6 @@ Package.on_use(function (api) {
   // Allows user access to Knox
   if(api.export) {
     api.export("Knox","server");
-    api.export(["S3files","S3config", "S3"],["client", "server"]);
+    api.export(["S3files","S3config", "S3", "Files"],["client", "server"]);
   }
 });
