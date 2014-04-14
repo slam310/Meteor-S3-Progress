@@ -160,6 +160,8 @@ Meteor.methods({
       obj.type = 'global';
       S3config.insert(obj);
     }
+
+    return true;
   },
   S3upload:function(options){
     var user_id = this.userId;

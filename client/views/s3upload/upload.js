@@ -1,4 +1,4 @@
-Template.s3upload.helpers({
+Template.s3_upload_button.helpers({
   button_size_css: function(){
     var s3config = S3config.findOne({type: 'global'});
     if(s3config.allow_user_config == 'on'){
@@ -7,6 +7,42 @@ Template.s3upload.helpers({
       return 'btn-block'
     }
   },
+  s3private: function(){
+    var s3config_user = S3config.findOne({user_id: Meteor.userId()});
+    if(typeof s3config_user == 'object'){
+      return true;
+    } else {
+      return false;
+    }
+  }
+});
+
+Template.s3_allow_user_config.helpers({
+  config_button_toggle: function(){
+    var toggle = Session.get('s3_user_config_button_toggle');
+    if(toggle){
+      return true;
+    } else {
+      return false;
+    }
+  }
+});
+
+Template.s3_allow_user_config.events({
+  'click .s3-user-config-button': function(event, template){
+    var toggle = Session.get('s3_user_config_button_toggle');
+    if(typeof toggle == 'undefined'){
+      toggle = false;
+    }
+    if(toggle){
+      Session.set('s3_user_config_button_toggle', false);
+    } else {
+      Session.set('s3_user_config_button_toggle', true);
+    }
+  }
+});
+
+Template.s3upload.helpers({
   allow_user_config: function(){
     var s3config = S3config.findOne({type: 'global'});
     if(s3config.allow_user_config == 'on'){
@@ -18,14 +54,6 @@ Template.s3upload.helpers({
   noUploads: function(){
     var s3_file_name = Session.get('s3-file-name');
     if(s3_file_name == null || typeof s3_file_name == 'undefined') {
-      return true;
-    } else {
-      return false;
-    }
-  },
-  s3private: function(){
-    var s3config_user = S3config.findOne({user_id: Meteor.userId()});
-    if(typeof s3config_user == 'object'){
       return true;
     } else {
       return false;

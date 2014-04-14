@@ -77,6 +77,20 @@ Template.s3config_form.helpers({
     } else {
       return 'btn-default'
     }
+  },
+  delete_all_user_files_on_active: function(){
+    if(this.use_user_role == 'on'){
+      return 'btn-default active'
+    } else {
+      return 'btn-default'
+    }
+  },
+  delete_all_user_files_off_active: function(){
+    if(this.use_user_role == 'off'){
+      return 'btn-default active'
+    } else {
+      return 'btn-default'
+    }
   }
 });
 
@@ -92,7 +106,13 @@ Template.s3config.events({
         s3configObject[v.name] = v.value;
     });
     Meteor.call('S3AdminConfig', s3configObject, function(err, res){
-      console.log(err);
+      if(err){
+        console.log(err);
+      }
+      if(res){
+        console.log(res);
+      }
+
     });
   }
 });

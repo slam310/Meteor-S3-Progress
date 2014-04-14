@@ -69,9 +69,10 @@
     {{#with config}}
     <form class='form-horizontal' role="form">
       {{> s3config_form}}
-      <button id='S3ConfigSaveButton' type="submit" class="btn btn-default btn-block">Update</button>
+      <button id='S3ConfigSaveButton' type="submit" class="btn btn-default btn-block no-select">Update</button>
     </form>
     {{/with}}
+<!--
     {{#if config}}
     <br>
     <p>
@@ -82,6 +83,7 @@
       <a id='BucketPolicyConfigurationButton' class='btn btn-default' download="bucket_policy_configuration.json" href='/s3/bucket_policy_configuration.json' title='Right Click and Save Link As'>Bucket Policy Configuration</a>
     </div>
     {{/if}}
+     -->
   </div>
 
   {{/if}}
