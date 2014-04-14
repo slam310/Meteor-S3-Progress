@@ -13,7 +13,6 @@ Package.on_use(function (api) {
   //Need service-configuration to use Meteor.method
   api.use([
     'underscore',
-    'handlebars',
     'templating',
     'collection-hooks',
     'momentjs',
@@ -24,7 +23,7 @@ Package.on_use(function (api) {
     'router',
     'deps'
     ], ['client', 'server']);
-  api.use(['handlebars-server'], 'server');
+  // api.use(['handlebars-server'], 'server');
 
   // Collections shared by both client and server.
   api.add_files([
