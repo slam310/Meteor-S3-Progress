@@ -78,18 +78,25 @@ Template.s3config_form.helpers({
       return 'btn-default'
     }
   },
-  delete_all_user_files_on_active: function(){
-    if(this.use_user_role == 'on'){
+  delete_user_files_on_active: function(){
+    if(this.deleteUserFiles == 'on'){
       return 'btn-default active'
     } else {
       return 'btn-default'
     }
   },
-  delete_all_user_files_off_active: function(){
-    if(this.use_user_role == 'off'){
+  delete_user_files_off_active: function(){
+    if(this.deleteUserFiles == 'off'){
       return 'btn-default active'
     } else {
       return 'btn-default'
+    }
+  },
+  is_not_global: function(){
+    if(this.type != 'global'){
+      return true;
+    } else {
+      return false;
     }
   }
 });

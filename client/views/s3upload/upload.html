@@ -18,10 +18,19 @@
   {{#if config_button_toggle true}}
     <div class='row'>
       <div class='well well-sm col-md-10 col-md-offset-1'>
+        {{#if config}}
+        {{#with config}}
         <form class='form-horizontal' role="form">
           {{> s3config_form}}
-          <button id='S3ConfigSaveButton' type="submit" class="btn btn-default btn-block no-select">Update</button>
+          <button type="submit" class="btn btn-default btn-block no-select s3-config-save-button">Update</button>
         </form>
+        {{/with}}
+        {{else}}
+        <form class='form-horizontal' role="form">
+          {{> s3config_form}}
+          <button type="submit" class="btn btn-default btn-block no-select s3-config-save-button">Update</button>
+        </form>
+        {{/if}}
       </div>
     </div>
   {{/if}}

@@ -25,6 +25,10 @@ Template.s3_allow_user_config.helpers({
     } else {
       return false;
     }
+  },
+  config: function(){
+    var config = S3config.findOne({user_id: Meteor.userId()});
+    return config;
   }
 });
 
@@ -39,6 +43,25 @@ Template.s3_allow_user_config.events({
     } else {
       Session.set('s3_user_config_button_toggle', true);
     }
+  },
+  'click .s3-config-save-button': function(event, template){
+    event.preventDefault();
+
+    var form = template.find('form');
+    var serialized_form = $(form).serializeArray();
+    var s3configObject = {};
+    $.each(serialized_form, function(i, v) {
+        s3configObject[v.name] = v.value;
+    });
+    Meteor.call('S3ConfigSave', s3configObject, function(err, res){
+      if(err){
+        console.log(err);
+      }
+      if(res){
+        console.log(res);
+      }
+
+    });
   }
 });
 

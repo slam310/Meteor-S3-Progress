@@ -138,6 +138,8 @@ Meteor.methods({
     }
   },
   S3ConfigSave: function(obj) {
+    var userId = this.userId;
+    obj.user_id = userId;
     if(obj._id){
       var _id = obj._id;
       delete obj._id;

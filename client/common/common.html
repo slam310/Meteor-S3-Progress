@@ -37,6 +37,7 @@
     </div>
   </div>
 
+  {{#if is_not_global}}
   <div class="form-group">
     <label for="S3DeleteUserFiles" class="col-sm-3 control-label">Delete My Files</label>
     <div class='col-sm-9'>
@@ -55,6 +56,7 @@
       </div>
     </div>
   </div>
+  {{/if}}
 
   {{#if type 'global'}}
   <h3>Global Options</h3>
@@ -92,24 +94,6 @@
         Use User Role allows for the application to be setup so that certain users have access
         to the S3 functionality. With this option set to yes, only users with the s3_user role
         will be able to see the S3 templates.
-      </div>
-    </div>
-  </div>
-    <div class="form-group">
-    <label for="S3DeleteAppUserFiles" class="col-sm-3 control-label">Delete User Files</label>
-    <div class='col-sm-9'>
-      <div class="btn-group" data-toggle="buttons">
-        <label class="btn {{delete_all_user_files_on_active}}">
-          <input type="radio" name="deleteUserFiles" class='s3-delete-user-files-radio' id="S3DeleteAppUserFilesOn" value='on'> Yes
-        </label>
-        <label class="btn {{delete_all_user_files_off_active}}">
-          <input type="radio" name="deleteUserFiles" class='s3-delete-user-files-radio' id="S3DeleteAppUserFilesOff" value='off'> No
-        </label>
-      </div>
-      <br><br>
-      <div class='alert alert-info'>
-        Setting this option to Yes removes all files stored for this user by the application in the users private
-        S3 bucket.
       </div>
     </div>
   </div>
