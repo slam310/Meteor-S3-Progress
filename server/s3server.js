@@ -163,6 +163,14 @@ Meteor.methods({
       S3config.insert(obj);
     }
 
+    // If allow_user_config: "off" remove any non-global S3config objects.
+    if(obj.allow_user_config == 'off'){
+      var user_configs = S3config.find({type: {$ne: 'global'}}).fetch();
+      _.each(user_configs, function(config){
+        S3config.remove({_id: config._id});
+      })
+    }
+
     return true;
   },
   S3upload:function(options){
