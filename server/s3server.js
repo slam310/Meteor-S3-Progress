@@ -11,10 +11,10 @@ Meteor.startup(function(){
     var role_exists = false;
     _.each(all_roles, function(role){
       if(role.name == s3_role){
-        role_exists = true
+        role_exists = true;
       }
     });
-    if(role_exists == false) {
+    if(role_exists === false) {
       Roles.createRole(s3_role);
     }
   });
@@ -25,8 +25,8 @@ getS3Config = function(){
   var user = Meteor.users.findOne({_id: user_id});
   var s3config;
   var s3config_user = S3config.findOne({user_id: user_id});
-  if(typeof s3config_user == 'object'){
-    s3config = s3config_user
+  if(typeof s3config_user === 'object'){
+    s3config = s3config_user;
   } else {
     s3config = S3config.findOne({type: 'global'});
   }
@@ -36,7 +36,7 @@ getS3Config = function(){
 
 // Publish all the roles to the client per the Roles package documentation.
 Meteor.publish(null, function (){
-  return Meteor.roles.find({})
+  return Meteor.roles.find({});
 });
 
 Meteor.publish('s3files', function(user){
@@ -46,7 +46,7 @@ Meteor.publish('s3files', function(user){
   if(Roles.userIsInRole(_user_id, ['s3_admin'])) {
     return S3files.find({});
   } else {
-    return S3files.find({user: _user_id})
+    return S3files.find({user: _user_id});
   }
 });
 
@@ -68,7 +68,7 @@ Meteor.publish('s3_all_users', function(user){
 });
 
 Meteor.publish('s3config', function(){
-  return S3config.find({user: this.userId, type: {$ne: 'global'}})
+  return S3config.find({user: this.userId, type: {$ne: 'global'}});
 });
 
 Meteor.publish('s3_admin_users', function(user){
@@ -132,7 +132,7 @@ Meteor.methods({
     Roles.addUsersToRoles(user_id, 's3_admin');
   },
   AddS3AdminRole: function(user){
-    if(typeof user.username == 'string'){
+    if(typeof user.username === 'string'){
       var user = Meteor.users.findOne({username: user.username});
       Roles.addUsersToRoles(user._id,['s3_admin']);
     }
@@ -168,7 +168,7 @@ Meteor.methods({
       var user_configs = S3config.find({type: {$ne: 'global'}}).fetch();
       _.each(user_configs, function(config){
         S3config.remove({_id: config._id});
-      })
+      });
     }
 
     return true;
@@ -207,7 +207,7 @@ Meteor.methods({
     var headers = {
       "Content-Type":   file.type,
       "Content-Length": buffer.length
-    }
+    };
 
     var put = knox.putStream(file_stream_buffer,path,headers,function(e,r){
       if(r){
@@ -224,7 +224,7 @@ Meteor.methods({
     );
 
     put.on('error', Meteor.bindEnvironment(function(error){
-        console.log("Error Call: ", error)
+        console.log("Error Call: ", error);
         S3files.update({file_name: file.name}, {$set: {error: true}});
       })
     );
@@ -232,7 +232,7 @@ Meteor.methods({
     var url = knox.http(future.wait());
     if(url != null){
       S3files.update({file_name: file.name}, {$set: {url: url}});
-      if(typeof callback == 'string'){
+      if(typeof callback === 'string'){
         Meteor.call(callback,url,context);
       }
     }
@@ -240,7 +240,7 @@ Meteor.methods({
   S3delete:function(file_id, callback){
     var file = S3files.findOne({_id: file_id});
     var s3config = S3config.findOne({_id: file.s3_config_id});
-    if(typeof s3config == 'undefined'){
+    if(typeof s3config === 'undefined'){
       s3config = S3config.findOne({type: 'global'});
     }
     var knox = Knox.createClient(s3config);
@@ -258,9 +258,9 @@ Meteor.methods({
     var future = new Future();
     knox.list({prefix: path}, function(err, data){
       if(err)
-        console.log(err)
+        console.log(err);
       if(data)
-        future.return(data)
+        future.return(data);
     });
 
     var files = future.wait();

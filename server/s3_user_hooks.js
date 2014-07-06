@@ -8,8 +8,8 @@ Meteor.users.before.remove(function (userId, doc) {
   var _deleteUserFiles = _s3config.deleteUserFiles;
   if(_deleteUserFiles = 'yes'){
     _.each(_s3files, function(file){
-      Meteor.call('S3Delete', file._id)
-    })
+      Meteor.call('S3Delete', file._id);
+    });
   }
 
 });
