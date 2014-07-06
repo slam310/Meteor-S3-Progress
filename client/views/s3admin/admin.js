@@ -32,7 +32,7 @@ Template.s3config.helpers({
   noConfig: Files.noConfig,
   noAdminUsers: function(){
     var admin_users = Roles.getUsersInRole('s3_admin').fetch();
-    if(admin_users.length == 0){
+    if(admin_users.length === 0){
       return true;
     } else {
       return false;
@@ -52,44 +52,44 @@ Template.s3config.helpers({
 Template.s3config_form.helpers({
   on_active: function(){
     if(this.allow_user_config == 'on'){
-      return 'btn-default active'
+      return 'btn-default active';
     } else {
-      return 'btn-default'
+      return 'btn-default';
     }
   },
   off_active: function(){
     if(this.allow_user_config == 'off'){
-      return 'btn-default active'
+      return 'btn-default active';
     } else {
-      return 'btn-default'
+      return 'btn-default';
     }
   },
   use_user_role_on_active: function(){
     if(this.use_user_role == 'on'){
-      return 'btn-default active'
+      return 'btn-default active';
     } else {
-      return 'btn-default'
+      return 'btn-default';
     }
   },
   use_user_role_off_active: function(){
     if(this.use_user_role == 'off'){
-      return 'btn-default active'
+      return 'btn-default active';
     } else {
-      return 'btn-default'
+      return 'btn-default';
     }
   },
   delete_user_files_on_active: function(){
     if(this.deleteUserFiles == 'on'){
-      return 'btn-default active'
+      return 'btn-default active';
     } else {
-      return 'btn-default'
+      return 'btn-default';
     }
   },
   delete_user_files_off_active: function(){
     if(this.deleteUserFiles == 'off'){
-      return 'btn-default active'
+      return 'btn-default active';
     } else {
-      return 'btn-default'
+      return 'btn-default';
     }
   },
   is_not_global: function(){
@@ -130,7 +130,7 @@ Template.s3config_no_users.helpers({
     if(admin_user){
       return admin_user;
     } else {
-      return 'username'
+      return 'username';
     }
   },
   user_exists: function(){
@@ -224,20 +224,20 @@ var S3CallBack = function(error, result){
       title: "S3 Package Error"
     });
   }
-}
+};
 
 Template.s3config_admin_users.events({
   'click .remove-s3-admin-role-button': function (event, template) {
     Meteor.call('S3RemoveAdminRole', this._id, S3CallBack);
   },
   'click .add-s3-admin-role-button': function (event, template) {
-    console.log(this._id)
+    console.log(this._id);
     Meteor.call('S3AddAdminRole', this._id, S3CallBack);
   },
   'click .remove-s3-user-role-button': function (event, template) {
-    Meteor.call('S3RemoveUserRole', this._id, S3CallBack)
+    Meteor.call('S3RemoveUserRole', this._id, S3CallBack);
   },
   'click .add-s3-user-role-button': function (event, template) {
-    Meteor.call('S3AddUserRole', this._id, S3CallBack)
+    Meteor.call('S3AddUserRole', this._id, S3CallBack);
   }
 });
