@@ -1,2 +1,4 @@
 .build*
 .DS_store
+tests/nightwatch/reports
+tests/nightwatch/screenshots
