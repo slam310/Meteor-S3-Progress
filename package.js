@@ -1,5 +1,8 @@
 Package.describe({
-  summary: 'Upload files to Files. Allows use of Knox Server-Side and get files urls on client-side.'
+  summary: 'Upload files to Files. Allows use of Knox Server-Side and get files urls on client-side.',
+  version: "1.6.0",
+  git: "https://github.com/digilord/Meteor-S3-Progress.git"
+  name: "digilord:s3-progress"
 });
 
 var both = ['client', 'server'];
@@ -10,21 +13,18 @@ Npm.depends({
 });
 
 Package.on_use(function (api) {
+  api.versionsFrom("METEOR@0.9.0");
   //Need service-configuration to use Meteor.method
-  api.use([
-    'underscore',
-    'templating',
-    'collection-hooks',
-    'momentjs',
-    'accounts-base',
-    'coffeescript',
-    'roles',
-    'bootboxjs',
-    'router',
-    'deps'
-    ], ['client', 'server']);
-  // api.use(['handlebars-server'], 'server');
-
+  api.use('underscore');
+  api.use('templating');
+  api.use('coffeescript');
+  api.use('accounts-base');
+  api.use('deps');
+  api.use('matb33:collection-hooks');
+  api.use('mrt:moment');
+  api.use('digilord:roles');
+  api.use('mizzao:bootboxjs');
+  
   // Collections shared by both client and server.
   api.add_files([
     'lib/files.js',
@@ -46,8 +46,7 @@ Package.on_use(function (api) {
     'client/common/cors_configuration.handlebars',
     'client/common/bucket_policy_configuration.handlebars',
     'server/s3server.js',
-    'server/s3_user_hooks.js',
-    'server/routes.js'
+    'server/s3_user_hooks.js'
     ], 'server');
 
 
