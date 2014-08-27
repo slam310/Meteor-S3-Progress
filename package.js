@@ -1,7 +1,7 @@
 Package.describe({
   summary: 'Upload files to Files. Allows use of Knox Server-Side and get files urls on client-side.',
   version: "1.6.0",
-  git: "https://github.com/digilord/Meteor-S3-Progress.git"
+  git: "https://github.com/digilord/Meteor-S3-Progress.git",
   name: "digilord:s3-progress"
 });
 
@@ -20,10 +20,10 @@ Package.on_use(function (api) {
   api.use('coffeescript');
   api.use('accounts-base');
   api.use('deps');
-  api.use('matb33:collection-hooks');
-  api.use('mrt:moment');
-  api.use('digilord:roles');
-  api.use('mizzao:bootboxjs');
+  api.use('matb33:collection-hooks@0.7.3');
+  api.use('mrt:moment@2.8.1');
+  api.use('digilord:roles@1.2.12');
+  api.use('mizzao:bootboxjs@4.3.0');
   
   // Collections shared by both client and server.
   api.add_files([
